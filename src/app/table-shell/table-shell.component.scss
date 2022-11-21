@@ -1,0 +1,32 @@
+
+  .casinoContainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+    padding:auto 15%;
+    width:80%;
+    margin: 3% auto auto auto;
+    justify-content: space-between;
+
+
+ app-deck-shell {
+        width:auto;
+      }
+.playersshell {
+      display: flex;
+      flex-direction: column;
+      row-gap: 40px;
+      width: auto;
+      margin: 0;
+      justify-content: space-between;
+      app-dealer-shell.dealershell {
+        width: 1090px;
+        // background-color: red;
+        background-color: transparent;
+      }
+      app-player-shell.playershell{
+        width: 1090px;
+        background-color:transparent;
+      }
+    }
+ }

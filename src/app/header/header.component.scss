@@ -1,0 +1,46 @@
+.content{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ width: 100%;
+ z-index: 0;
+  .headerTitle{
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+    margin: 0 20px;
+    .titlelogo {
+      margin: auto 20px auto 40px;
+      padding: auto;
+      width: 80px;
+    }
+    .title{
+      overflow-y:visible;
+      z-index: 100;
+      margin:  60px auto auto -40px;
+      padding: 80px  auto;
+      font-family: lust-script, sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 60px;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #A22817;
+      filter: drop-shadow(20px 10px 4px #b28f27);
+    }
+  }
+ .headerNavBar{
+    margin-right: 80px;
+    margin-top: 30px;
+    mat-nav-list.header-nav-list {
+    list-style: none;
+    display:flex;
+    flex-direction: row;
+
+
+    mat-list-item.header-nav-list-item {
+      display: inline-block;
+    }
+  }
+ }
+}

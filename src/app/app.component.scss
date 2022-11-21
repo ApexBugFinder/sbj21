@@ -1,0 +1,36 @@
+.contentContainer{
+  padding:20px;
+  background-color: #004030;
+  height: 100%;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/resourcery-6cdb0.appspot.com/o/sb21%2Fimages%2Fbackground%4072x-100.jpg?alt=media&token=ff08ede5-ca43-4158-8d45-b7dd51fa8bda);
+  z-index: 10;
+}
+.hi
+{
+  // color: var(--primary);
+
+  color: var(--primaryColor);
+  background-color: var(--accentColor);
+  border-radius: 3px 3px;
+  border: 2px #558B2F dashed;
+
+
+
+}
+.backpic{
+  position: absolute;
+  top: 40px;
+  z-index: 0;
+  height: 1000px;
+  left:30%;
+  opacity: 20%;
+}
+mat-sidenav-container {
+  display:flex;
+  flex-direction: row;
+  mat-sidenav-content {
+    width: 100%;
+  }
+}
+
+

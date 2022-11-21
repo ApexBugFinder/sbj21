@@ -1,0 +1,25 @@
+.resultsContainer {
+  width: 200px;
+  padding-left: 20px;
+  h4 {
+    margin-bottom: 10px;
+    
+  }
+  .totalContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+
+    .total {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+
+    }
+    .total:first-child{
+      margin-top: 16px;
+    }
+  }
+}

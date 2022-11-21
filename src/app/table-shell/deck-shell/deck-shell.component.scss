@@ -1,0 +1,52 @@
+.deckshellcontainer{
+  display:flex;
+  flex-direction: column;
+  width: 400px;
+
+.deckcontainer {
+  mat-card {
+    position: relative;
+    top: 10px;
+    width: 130px;
+    height: auto;
+    overflow: hidden;
+    border: 2px black solid;
+    border-radius: 12px;
+    img {
+      background-color: white;
+        width: inherit;
+    height: inherit;
+    }
+  }
+}
+.deckslotscontainer
+{
+  width: 400px;
+  // margin: 40px auto;
+  margin-top:40px;
+  padding-left: 16px;
+  mat-card.deckcards {
+
+
+    transform: rotate(0deg);
+    padding:0;
+    width: 130px;
+    padding:0px 0px;
+
+    height: auto;
+    border: 2px black solid;
+    border-radius: 12px;
+    margin: 20px 0px;
+    background-color: transparent;
+    overflow: hidden;
+    img {
+     width: inherit;
+      height: inherit;
+      background-color: white;
+      border-radius: 12px;
+      margin:auto auto auto auto;
+      padding:auto;
+    }
+  }
+}
+}
