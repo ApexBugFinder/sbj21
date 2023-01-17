@@ -13,6 +13,7 @@ import { PlayerShellComponent } from './table-shell/player-shell/player-shell.co
 import { HandModule } from './hand/hand.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { CardsModule } from './cards/cards.module';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    
+    CardsModule,
     HandModule,
          FontAwesomeModule
   ],
