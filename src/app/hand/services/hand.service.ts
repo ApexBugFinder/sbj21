@@ -19,5 +19,7 @@ export class HandService {
         this.clientRt = Constants.clientRoot;
   }
 
-  public getHandStatus(hand_id: Number| undefined): Observable<
+  public getHandStatus(hand_id: Number | undefined) {
+    return
+  }
 }
