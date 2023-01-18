@@ -67,7 +67,7 @@ build:
     - docker:dind
   before_script:
     # - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
+    - docker login --username $DOCKER_USER --password $DOCKER_PASS
   script:
     - docker system prune
     - docker build -t $IMAGE_TAG
