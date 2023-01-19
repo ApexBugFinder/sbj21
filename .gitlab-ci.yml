@@ -100,8 +100,9 @@ deploy_feature:
     - docker tag $GITLAB_IMAGE_TAG $FEATURE_APP
     - echo obasi79/sbj-staging:$CI_ENVIRONMENT_SLUG
     - docker tag $GITLAB_IMAGE_TAG $APEXBUGSERVER_STAGING
+    - docker push $APEXBUGSERVER_STAGING
     - docker images
-    - docker run --rm -d -it $GITLAB_IMAGE_TAG
+    - docker run --rm -d -it -p 8000:80 $GITLAB_IMAGE_TAG
     - docker ps
   artifacts:
     untracked: false
