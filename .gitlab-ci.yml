@@ -105,7 +105,7 @@ deploy_feature:
     - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
     - docker push $FEATURE_APP
     - docker images
-    - docker run --rm -d -it -p 8000:8000 $FEATURE_APP
+    - docker run --rm -d -it -p 8000:80 $FEATURE_APP
     - docker ps
   artifacts:
     untracked: false
