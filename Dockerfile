@@ -10,7 +10,7 @@ COPY . .
 RUN chown -R node /app
 CMD ["npm", "start"]
 
-# from nginx:latest
-# COPY --from=build /app/dist/sbj /usr/share/nginx/html
+FROM nginx:latest
+COPY --from=build /app/dist/sbj /usr/share/nginx/html
 
-# EXPOSE 80
+EXPOSE 80
