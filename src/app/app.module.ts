@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidenavComponent } from './user/login/sidenav/sidenav.component';
 import { CardsModule } from './cards/cards.module';
 import { UserModule } from './user/user.module';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { UserModule } from './user/user.module';
     TableShellComponent,
     DeckShellComponent,
     DealerShellComponent,
-    PlayerShellComponent
+    PlayerShellComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,10 +35,12 @@ import { UserModule } from './user/user.module';
     CardsModule,
     HandModule,
     FontAwesomeModule,
-    UserModule
+    UserModule,
   ],
 
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

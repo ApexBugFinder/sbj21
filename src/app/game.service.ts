@@ -6,7 +6,7 @@ import { Observable, of, pipe } from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Game} from './models/game'
 import { PlayerShellComponent } from './table-shell/player-shell/player-shell.component';
-import { User } from './user/models/user';
+import { Player } from './user/models/player';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,7 +24,7 @@ export class GameService {
     this.clientRt = Constants.clientRoot;
   }
 
-  public create(player: User, dealer: User ): Observable<Game> {
+  public create(player: Player, dealer: Player ): Observable<Game> {
 
     let item = {
       "player.id": player.id,
