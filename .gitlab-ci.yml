@@ -91,9 +91,11 @@ deploy_feature:
     - export SERVER_FEATURE= $APEXBUGSERVER_STAGING_FEATURE
     - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
   script:
-    - docker pull $IMAGE_TAG
-    - docker tag $IMAGE_TAG $APEXBUGSERVER_STAGING_FEATURE
+    # - docker pull $IMAGE_TAG
+    - docker pull $GITLAB_IMAGE_TAG
+    # - docker tag $IMAGE_TAG $APEXBUGSERVER_STAGING_FEATURE
+    - docker tag $GITLAB_IMAGE_TAG $APEXBUGSERVER_STAGING_FEATURE
     - docker images
-    # - docker run --rm -d -it $APEXBUGSERVER_STAGING_FEATURE
-    # - docker ps
+    - docker run --rm -d -it $APEXBUGSERVER_STAGING_FEATURE
+    - docker ps
 
