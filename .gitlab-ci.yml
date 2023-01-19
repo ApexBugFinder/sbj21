@@ -43,11 +43,10 @@ stages:
 
 install:
   stage: setup
-  tags:
-    - sbjfront
+
   image: node:latest
   before_script:
-  - sudo apt-get update
+  - apt-get update
   - node --version
   - npm install -g npm@9.1.1
   - npm --version
@@ -64,8 +63,6 @@ install:
 # build & push to docker image
 build:
   stage: build-stage
-  tags:
-    - sbjfront
   image: docker:latest
   services:
     - docker:dind
