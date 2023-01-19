@@ -47,7 +47,7 @@ install:
     - sbjfront
   image: node:latest
   before_script:
-  - apt-get update
+  - sudo apt-get update
   - node --version
   - npm install -g npm@9.1.1
   - npm --version
