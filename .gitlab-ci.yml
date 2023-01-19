@@ -43,6 +43,8 @@ stages:
 
 install:
   stage: setup
+  tags:
+    - sbjfront
   image: node:latest
   before_script:
   - apt-get update
@@ -62,6 +64,8 @@ install:
 # build & push to docker image
 build:
   stage: build-stage
+  tags:
+    - sbjfront
   image: docker:latest
   services:
     - docker:dind
