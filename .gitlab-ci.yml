@@ -99,7 +99,7 @@ deploy_feature:
     # - docker tag $IMAGE_TAG $APEXBUGSERVER_STAGING_FEATURE
     - docker tag $GITLAB_IMAGE_TAG $APEXBUGSERVER_STAGING_FEATURE
     - docker images
-    - docker run --rm -d -it $APEXBUGSERVER_STAGING_FEATURE
+    - docker run --rm -d -it $GITLAB_IMAGE_TAG
     - docker ps
   artifacts:
     untracked: false
