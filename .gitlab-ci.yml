@@ -86,7 +86,7 @@ deploy_feature:
   stage: deploy-feature-stage
   environment:
     name: staging
-    url: $STAGING_SERVER
+    url: "https://198.211.29.93"
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - export FEATURE_APP="$CI_ENVIRONMENT_SLUG" >> deploy_feature.env
