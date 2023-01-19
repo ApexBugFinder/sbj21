@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Observable, of, pipe } from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Game} from './models/game'
+import { PlayerShellComponent } from './table-shell/player-shell/player-shell.component';
+import { User } from './user/models/user';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,12 +24,38 @@ export class GameService {
     this.clientRt = Constants.clientRoot;
   }
 
-  public create(): Observable<Game> {
-  let p: Game = {
-    id: 1,
-      created_at: new Date
+  public create(player: User, dealer: User ): Observable<Game> {
+
+    let item = {
+      "player.id": player.id,
+      "dealer.id": dealer.id
     }
-    return of(p);
+
+    const address = 'create_game/';
+    const req_address = this.apiAddress + address;
+    const hdrs = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', [
+        this.apiRt,
+        this.apiAddress,
+        Constants.clientRoot,
+      ])
+      .set('Access-Control-Allow-Methods', 'POST')
+      .set('content-type', 'application/json');
+
+
+
+
+    return this.http.post<Game>(
+      req_address,
+      item,
+      {headers: hdrs}
+    ).pipe(
+      timeout(8000),
+      map((newgame: Game) => {
+        console.log('new Game started: ', newgame)
+        return newgame;
+      })
+    );
   }
 }
 
