@@ -88,8 +88,9 @@ deploy_feature:
     name: staging
     url: $STAGING_SERVER
   before_script:
-    - export FEATURE_APP="$CI_ENVIRONMENT_SLUG"
-    - export SERVER_FEATURE= $APEXBUGSERVER_STAGING_FEATURE
+    - export FEATURE_APP="$CI_ENVIRONMENT_SLUG" >> deploy_feature.env
+    - echo $APEXBUGSERVER_STAGING_FEATURE
+    - export SERVER_FEATURE=$APEXBUGSERVER_STAGING_FEATURE
     - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
   script:
     # - docker pull $IMAGE_TAG
@@ -99,4 +100,12 @@ deploy_feature:
     - docker images
     - docker run --rm -d -it $APEXBUGSERVER_STAGING_FEATURE
     - docker ps
+  artifacts:
+    untracked: false
+    when: on_success
+    expire_in: "30 days"
+    reports:
+      dotenv: deploy_feature.env
+  only:
+    - /^feature-.*$/
 
