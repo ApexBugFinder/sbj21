@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from './card/card.component';
-
+import { SplashComponent } from './splash/splash.component';
+import { NewgameComponent } from './newgame/newgame.component';
 import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    CardComponent
+    SplashComponent,
+    NewgameComponent
   ],
   imports: [
     CommonModule,
     SharedModule
-  ],
-  exports: [
-    CardComponent
-  ],
-  entryComponents:[CardComponent]
+  ]
 })
-export class CardsModule { }
+export class WelcomeModule { }

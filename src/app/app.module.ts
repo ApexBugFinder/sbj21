@@ -12,8 +12,9 @@ import { DealerShellComponent } from './table-shell/dealer-shell/dealer-shell.co
 import { PlayerShellComponent } from './table-shell/player-shell/player-shell.component';
 import { HandModule } from './hand/hand.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavComponent } from './user/login/sidenav/sidenav.component';
 import { CardsModule } from './cards/cards.module';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -23,8 +24,7 @@ import { CardsModule } from './cards/cards.module';
     TableShellComponent,
     DeckShellComponent,
     DealerShellComponent,
-    PlayerShellComponent,
-    SidenavComponent
+    PlayerShellComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +33,10 @@ import { CardsModule } from './cards/cards.module';
     SharedModule,
     CardsModule,
     HandModule,
-         FontAwesomeModule
+    FontAwesomeModule,
+    UserModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
