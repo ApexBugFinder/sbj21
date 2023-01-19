@@ -2,7 +2,7 @@ image: node:latest
 variables:
   FF_USE_FASTZIP: "true"
   IMAGE_TAG: obasi79/sbj
- 
+
   GITLAB_IMAGE_TAG: $CI_REGISTRY_IMAGE/sbj:$CI_COMMIT_SHORT_SHA
 
   STAGING_APP: sbj-staging
@@ -86,8 +86,8 @@ deploy_feature:
     - docker:dind
   stage: deploy-feature-stage
   environment:
-    name: staging
-    url: "https://198.211.29.93"
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://198.211.29.93
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - export FEATURE_APP="$CI_ENVIRONMENT_SLUG" >> deploy_feature.env
@@ -97,7 +97,7 @@ deploy_feature:
   script:
     # - docker pull $IMAGE_TAG
     - docker pull $GITLAB_IMAGE_TAG
-    - docker tag $IMAGE_TAG $FEATURE_APP
+    - docker tag $GITLAB_IMAGE_TAG $FEATURE_APP
     - echo obasi79/sbj-staging:$CI_ENVIRONMENT_SLUG
     - docker tag $GITLAB_IMAGE_TAG $APEXBUGSERVER_STAGING
     - docker images
