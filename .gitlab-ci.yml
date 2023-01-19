@@ -70,7 +70,7 @@ build:
     # - docker login --username $DOCKER_USER --password $DOCKER_PASS
     # - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
   script:
-    - docker system prune
+
     - docker build -t $IMAGE_TAG .
     # - docker build -t $GITLAB_IMAGE_TAG .
     - docker images
