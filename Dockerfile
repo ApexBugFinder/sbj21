@@ -8,10 +8,7 @@ RUN npm install --production --silent && mv node_modules ../
 COPY . /app
 
 RUN chown -R node /app
+
+
 CMD ["npm", "start"]
-
-FROM nginx:latest
-
-COPY --from=build /app/dist/sbj /usr/share/nginx/html
-
 EXPOSE 80

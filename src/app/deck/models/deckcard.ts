@@ -11,7 +11,7 @@ export interface DeckCard {
 }
 
 export const defaultDeckCard: DeckCard = {
-  id: 1,
+  id: 0,
   deck_id: 1,
   face: 'T1',
   suite: 'Test',

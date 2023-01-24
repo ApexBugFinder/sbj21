@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PlayerService } from 'src/app/user/services/player.service';
 
 @Component({
   selector: 'app-player-shell',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./player-shell.component.scss']
 })
 export class PlayerShellComponent implements OnInit {
-
-  constructor() { }
+  @Input() username: String|null='';
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
   }

@@ -24,14 +24,20 @@ export class PlayerService {
   public getPlayerByName(name: string): Observable<Player>{
     const address = 'read_by_name/' + name;
     const req_address = this.apiAddress + address;
-    const hdrs = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', [
-        this.apiRt,
-        this.apiAddress,
-        Constants.clientRoot,
-      ])
-      .set('Access-Control-Allow-Methods', 'GET')
-      .set('content-type', 'application/json');
+    let hdrs: HttpHeaders = new HttpHeaders();
+
+    hdrs = hdrs.append('Access-Control-Allow-Origin', [
+      this.apiRt,
+      this.apiAddress,
+      Constants.clientRoot,
+    ]);
+
+    hdrs = hdrs.append('Access-Control-Allow-Methods', ['GET', 'POST'])
+    hdrs = hdrs.append('content-type', 'application/json');
+
+
+    console.log(hdrs)
+
     return this.http.get<Player>(
       req_address,
       {headers: hdrs}

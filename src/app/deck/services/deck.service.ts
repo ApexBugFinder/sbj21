@@ -13,37 +13,39 @@ export class DeckService {
   private ctlrName;
   private apiRt;
   private apiAddress;
-  private hdrs;
   private clientRt;
   constructor(private http: HttpClient) {
     this.ctlrName = 'decks/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
-    this.hdrs = new HttpHeaders();
     this.clientRt = Constants.clientRoot;
 
   }
 
-  public createDeck(): Observable<DeckCard[]> {
+  public createDeck(id:Number): Observable<DeckCard[]> {
     const address = 'create';
     const req_address = this.apiAddress + address;
-    const hdrs = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', [
-        this.apiRt,
-        this.apiAddress,
-        Constants.clientRoot,
-      ])
-      .set('Access-Control-Allow-Methods', 'POST')
-      .set('content-type', 'application/json');
-
+    let hdrs = new HttpHeaders()
+    hdrs = hdrs.append('Access-Control-Allow-Origin', [
+      this.apiRt,
+      this.apiAddress,
+      Constants.clientRoot,
+    ]);
+    hdrs = hdrs.append('Access-Control-Allow-Methods', 'POST');
+    hdrs = hdrs.append('content-type', 'application/json');
+    const item = {
+        "game.id":id
+    }
+    console.log('ITEM to CREATE DECK: ', id)
     return this.http.post<DeckCard[]>(
       req_address,
+      item,
       { headers: hdrs }
     ).pipe(
       timeout(5000),
       map((deckcards: DeckCard[]) => {
         console.log('Deckcards returned from create Deck: ', JSON.stringify(deckcards))
-        return deckcards
+        return deckcards;
       })
     )
   }

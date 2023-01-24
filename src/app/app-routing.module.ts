@@ -5,12 +5,10 @@ import { WelcomeModule } from './welcome/welcome.module';
 import { SplashComponent } from './welcome/splash/splash.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'welcome', pathMatch:'full'},
+
   {path: 'welcome', component:SplashComponent},
-  {
-
-    path: 'casino', component: TableShellComponent}
-
+  {path: 'casino', component: TableShellComponent},
+ { path: '', redirectTo:'welcome', pathMatch:'full'}
 ];
 
 @NgModule({

@@ -2,12 +2,18 @@ var HttpsProxyAgent = require("https-proxy-agent");
 var proxyConfig = [
   {
     context: "/api/*",
-    target: "https://sbj.webapi.elenco.store",
+    target: "https://webapi.sbj.elenco.store",
     secure: false,
     changeOrigin: true,
     logLevel: "debug",
-  }
-
+  },
+  {
+    context: "/api*",
+    target: "http://localhost:7200",
+    secure: false,
+    changeOrigin: true,
+    logLevel: "debug",
+  },
 ];
 
 function setupForCorporateProxy(proxyConfig) {
