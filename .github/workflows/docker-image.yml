@@ -1,5 +1,6 @@
 name: Docker Image CI
 
+
 on:
   push:
     branches: [ "main" ]
@@ -15,4 +16,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag obasi79/sbj:latest
+      run: docker build . --file Dockerfile --tag $AZURE_REGISTRY/sbj:latest
