@@ -22,7 +22,7 @@ jobs:
     - name: Check variables
       run: echo $USERNAME, $SERVER,  $PASS,  $IMAGE
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $IMAGE:v1
+      run: docker build . --file Dockerfile --tag $IMAGE
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag $IMAGE
     - name: docker login
