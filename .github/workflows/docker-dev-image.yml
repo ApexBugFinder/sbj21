@@ -1,0 +1,33 @@
+name: Docker Image CI
+env:
+    USERNAME: ${{vars.AZURE_REGISTRY_NAME}}
+    SERVER: ${{vars.AZURE_REGISTRY_SERVER}}
+    PASS: ${{vars.AZURE_REGISTRY_PASS}}
+    IMAGE: ${{vars.AZURE_REGISTRY_SERVER}}/${{vars.AZURE_REGISTRY_REPO}}:v1
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    environment: development
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check variables
+      run: echo $USERNAME, $SERVER,  $PASS,  $IMAGE
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $IMAGE:v1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $IMAGE
+    - name: docker login
+      run:  echo  $PASS | docker login  $SERVER  -u $USERNAME --password-stdin
+    - name: Push image
+      run: docker push $IMAGE
+    - name: Job Complete
+      run : echo Docker build and Push complete of image $IMAGE to $SERVER
