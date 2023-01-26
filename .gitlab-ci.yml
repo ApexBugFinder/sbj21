@@ -100,12 +100,12 @@ deploy_feature:
   script:
 
     - docker pull $GITLAB_IMAGE_TAG
-    - docker tag $GITLAB_IMAGE_TAG $FEATURE_APP
+    - docker tag $GITLAB_IMAGE_TAG $APEXBUGSERVER_STAGING_FEATURE
 
     - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
-    - docker push $FEATURE_APP
+    - docker push $APEXBUGSERVER_STAGING_FEATURE
     - docker images
-    - docker run --rm -d -it -p 8000:80 $FEATURE_APP
+    - docker run --rm -d -it -p 8000:80 $APEXBUGSERVER_STAGING_FEATURE
     - docker ps
   artifacts:
     untracked: false
