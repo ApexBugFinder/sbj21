@@ -4,7 +4,7 @@ import { Constants } from 'src/app/helpers/Constants';
 import { Router } from '@angular/router';
 import { Observable, of, pipe } from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
-import { Player } from '../models/player'
+import { Player, defaultPlayer } from '../models/player'
 @Injectable({
   providedIn: 'root',
 })
@@ -22,10 +22,13 @@ export class PlayerService {
             this.clientRt = Constants.clientRoot;
   }
   public getPlayerByName(name: string): Observable<Player>{
+
     const address = 'read_by_name/' + name;
     const req_address = this.apiAddress + address;
     let hdrs: HttpHeaders = new HttpHeaders();
-
+    if (name == defaultPlayer.name) {
+      return of(defaultPlayer)
+    }
     hdrs = hdrs.append('Access-Control-Allow-Origin', [
       this.apiRt,
       this.apiAddress,

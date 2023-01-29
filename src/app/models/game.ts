@@ -1,4 +1,4 @@
 export interface Game {
-  id: Number;
+  id: number;
   created_at: Date;
 }

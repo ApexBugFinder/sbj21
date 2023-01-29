@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constants } from 'src/app/helpers/Constants';
 import { DeckCard } from '../models/deckcard';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Deck } from '../models/deck';
 
@@ -19,35 +19,37 @@ export class DeckService {
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.clientRt = Constants.clientRoot;
-
   }
 
-  public createDeck(id:Number): Observable<DeckCard[]> {
+  public createDeck(id: number): Observable<DeckCard[]> {
+
     const address = 'create';
     const req_address = this.apiAddress + address;
-    let hdrs = new HttpHeaders()
+    let hdrs = new HttpHeaders();
     hdrs = hdrs.append('Access-Control-Allow-Origin', [
       this.apiRt,
       this.apiAddress,
       Constants.clientRoot,
     ]);
-    hdrs = hdrs.append('Access-Control-Allow-Methods', 'POST');
+    hdrs = hdrs.append('Access-Control-Allow-Methods', ['POST']);
     hdrs = hdrs.append('content-type', 'application/json');
     const item = {
-        "game.id":id
-    }
-    console.log('ITEM to CREATE DECK: ', id)
-    return this.http.post<DeckCard[]>(
-      req_address,
-      item,
-      { headers: hdrs }
-    ).pipe(
-      timeout(5000),
-      map((deckcards: DeckCard[]) => {
-        console.log('Deckcards returned from create Deck: ', JSON.stringify(deckcards))
-        return deckcards;
-      })
-    )
+      'game.id': id,
+    };
+    console.log('ITEM to CREATE DECK: ', id);
+    this.printServiceInfo(req_address, item, hdrs);
+    return this.http
+      .post<DeckCard[]>(req_address, item, { headers: hdrs })
+      .pipe(
+        timeout(5000),
+        map((deckcards: DeckCard[]) => {
+          console.log(
+            'Deckcards returned from create Deck: ',
+            JSON.stringify(deckcards)
+          );
+          return deckcards;
+        })
+      );
   }
 
   // GET DEck By ID
@@ -63,22 +65,22 @@ export class DeckService {
       .set('Access-Control-Allow-Methods', 'POST')
       .set('content-type', 'application/json');
 
-
-    return this.http.get<Deck>(
-      req_address,
-      { headers: hdrs }
-    ).pipe(timeout(5000),
+    return this.http.get<Deck>(req_address, { headers: hdrs }).pipe(
+      timeout(5000),
       map((deck: Deck) => {
-        console.log('Deck returned from deckbyid in deckservice: ', JSON.stringify(deck));
+        console.log(
+          'Deck returned from deckbyid in deckservice: ',
+          JSON.stringify(deck)
+        );
         return deck;
-      }
-
-      ))
-
+      })
+    );
   }
 
-
-
-
+  public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders) {
+    console.log('urlAddress: ', address);
+    console.log('HEADERS:', httpHrd);
+    console.log('payload: ', JSON.stringify(payload));
+  }
 }
 

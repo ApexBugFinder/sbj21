@@ -21,14 +21,12 @@ export class DeckCardService {
     this.apiAddress = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
     this.clientRt = Constants.clientRoot;
-
   }
 
-
-
-
   // GET DEckcards by deckid
-  public deckcardsbydeckid(deck_id: number | undefined): Observable<DeckCard[]> {
+  public deckcardsbydeckid(
+    deck_id: number | undefined
+  ): Observable<DeckCard[]> {
     const address = 'read/' + deck_id;
     const req_address = this.apiAddress + address;
     const hdrs = new HttpHeaders()
@@ -39,17 +37,24 @@ export class DeckCardService {
       ])
       .set('Access-Control-Allow-Methods', 'GET')
       .set('content-type', 'application/json');
-
-    return this.http.get<DeckCard[]>(
-      req_address,
-      { headers: hdrs }
-    ).pipe(timeout(5000),
+    let item = {}
+this.printServiceInfo(req_address, item, hdrs);
+    return this.http.get<DeckCard[]>(req_address, { headers: hdrs }).pipe(
+      timeout(5000),
       map((deckcards: DeckCard[]) => {
-        console.log('Deckcards returned by deck_id by deckcard service', JSON.stringify(deckcards))
-        return deckcards
-      }))
+        console.log(
+          'Deckcards returned by deck_id by deckcard service',
+          JSON.stringify(deckcards)
+        );
+        return deckcards;
+      })
+    );
   }
-
+  public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders) {
+    console.log('urlAddress: ', address);
+    console.log('HEADERS:', httpHrd);
+    console.log('payload: ', payload);
+  }
 }
 
 

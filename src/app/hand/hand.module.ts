@@ -10,8 +10,6 @@ import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { CardsModule } from '../cards/cards.module';
 
-
-
 @NgModule({
   declarations: [
     HandstatusComponent,
@@ -28,5 +26,6 @@ import { CardsModule } from '../cards/cards.module';
     ResultsComponent,
     ShellComponent,
   ],
+  entryComponents: [HandstatusComponent, ShellComponent],
 })
 export class HandModule {}

@@ -1,13 +1,16 @@
+import { Hand } from "src/app/hand/models/hand";
+
 export interface Player{
-  id: Number;
+  id: number;
   name: string;
-  limit: Number;
+  limit: number;
   created_at: Date | undefined;
+  hand?:Hand
 }
 
 export const defaultPlayer = {
   id: 1,
-  name: 'testUser12',
+  name: '',
   limit: 0,
   created_at: undefined,
 };

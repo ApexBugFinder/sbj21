@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hand } from '../models/hand';
 
 @Component({
   selector: 'app-handbuttons',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HandbuttonsComponent implements OnInit {
   myColor = "blue";
+  @Input() handId: number;
   constructor() { }
 
   ngOnInit(): void {
+    console.log("INPUTTED HAND: ", this.handId);
   }
 
 }

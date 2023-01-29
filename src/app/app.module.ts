@@ -37,6 +37,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     FontAwesomeModule,
     UserModule,
   ],
+  exports:[PlayerShellComponent, TableShellComponent],
 
   providers: [
 

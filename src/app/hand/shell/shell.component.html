@@ -1,12 +1,17 @@
 <div class="handContainer">
-   <app-handstatus></app-handstatus>
-   <div class="content">
-        <app-cards></app-cards>
+   <app-handstatus
+   [player]="player"
+   [hand]="hand" >
+  </app-handstatus>
 
-        <app-results></app-results>
+  <div class="content">
+        <app-cards></app-cards>
+<!-- [h_value]="hand.h_value" [l_value]="hand.l_value" -->
+        <app-results [hand_id]="hand_id"  ></app-results>
    </div>
-<div class="buttonContainer">
-     <app-handbuttons></app-handbuttons>
+
+   <div class="buttonContainer">
+     <app-handbuttons [handId]="hand_id"></app-handbuttons>
 
 </div>
 

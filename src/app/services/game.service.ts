@@ -23,7 +23,8 @@ export class GameService {
     this.clientRt = Constants.clientRoot;
   }
 
-  public create(player: Player, dealer: Player):Observable<Game|undefined> {
+  public create(player: Player, dealer: Player): Observable<Game> {
+  
     const address = 'create_game';
     const req_address = this.apiAddress + address;
     console.log('REQ ADDRESS: ', req_address);
@@ -41,9 +42,8 @@ export class GameService {
       'dealer.id': dealer.id,
     };
     console.log('item to send: ', item);
-    if (player.id == defaultPlayer.id || dealer.id == defaultPlayer.id) {
-      return of(undefined);
-    }
+
+    this.printServiceInfo(req_address, item, hdrs);
     return this.http.post<Game>(req_address, item, { headers: hdrs }).pipe(
       timeout(5000),
       map((newGame: Game) => {
@@ -54,5 +54,11 @@ export class GameService {
         return newGame;
       })
     );
+  }
+
+  public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders) {
+    console.log('urlAddress: ', address);
+    console.log('HEADERS:', httpHrd);
+    console.log('payload: ', JSON.stringify(payload));
   }
 }
