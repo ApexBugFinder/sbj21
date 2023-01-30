@@ -1,9 +1,10 @@
-<div class="cardsContainer">
-    <app-card></app-card>
-    <app-card></app-card>
-    <app-card></app-card>
-    <app-card></app-card>
-    <app-card></app-card>
+<div *ngIf="cards" class="cardsContainer" >
+  <div  *ngFor="let handcard of cards">
+    <app-card  [id]="handcard.id" [aCard]="handcard"></app-card>
+  </div>
+
+
+
 
   <mat-divider class="divy"[vertical]="true"></mat-divider>
 

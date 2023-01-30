@@ -5,9 +5,9 @@
 
 
           <div class="playersshell">
-                <app-player-shell class="dealershell" [hand_id]="dealer_hand_id" [username]="getDealerName()"></app-player-shell>
-                  <!-- <app-handshell></app-handshell> -->
-                  <app-player-shell ng-show="username" [username]="getPlayerName()"  [hand_id]="player_hand_id"class="playershell"></app-player-shell>
+                <app-dealer-shell class="dealershell"  [dealerHand]="dealerHand" [username]="getDealerName()"></app-dealer-shell>
+
+                  <app-player-shell ng-show="username" [username]="getPlayerName()" [playerHand]="playerHand" class="playershell"></app-player-shell>
           </div>
   </div>
 

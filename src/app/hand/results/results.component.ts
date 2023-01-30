@@ -12,31 +12,14 @@ export class ResultsComponent implements OnInit {
   @Input() l_value: number;
   @Input() cards_count: number;
   @Input() hand_id: number;
-  public hand: Hand;
+  @Input() hand: Hand;
 
   constructor(private handService: HandService) {}
 
   ngOnInit(): void {
-    console.log('HAND ID INPUTTED: ', this.hand_id);
+    console.log('HAND INPUTTED: ', this.hand);
 
-    if (this.hand_id && this.hand_id !== undefined) {
-      this.getHandInfo(this.hand_id)
-        .then((rthand: Hand) => {
-          this.hand = rthand;
-          console.log('HAND RETurned: ', this.hand);
-        })
-        .catch((err) => console.log('Error retrieving HandInfo', err));
-    }
+
   }
-  getHandInfo(handId: number): Promise<Hand> {
-    let handPromise: Promise<Hand> = new Promise<Hand>((resolve, reject) => {
-      if (!handId || handId === undefined) {
-        reject('handId is not defined');
-      }
-      this.handService.getHandById(handId).subscribe((hand: Hand) => {
-        resolve(hand);
-      });
-    });
-    return handPromise;
-  }
+ 
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Hand } from 'src/app/hand/models/hand';
 import { Player, defaultPlayer } from 'src/app/user/models/player';
 import { PlayerService } from 'src/app/user/services/player.service';
 
@@ -12,6 +13,7 @@ export class PlayerShellComponent implements OnInit {
   @Input() username: string;
   @Input() gameId;
   @Input() hand_id: number;
+  @Input() playerHand: Hand;
   player: Player = defaultPlayer;
   player$: Observable<Player>;
   constructor(private playerService: PlayerService) {}
@@ -19,12 +21,10 @@ export class PlayerShellComponent implements OnInit {
   ngOnInit(): void {
     console.log('HAND ID PASSED IN: ', this.hand_id);
     console.log('username: ', this.username);
+    console.log('HAND PASSED IN: ', this.playerHand);
 
-    this.playerServe(this.username).then((playr: Player) => {
-      this.player = playr;
-    })
   }
-  //  PLAYER METHODS
+
 
 
   playerServe(username: string): Promise<Player> {

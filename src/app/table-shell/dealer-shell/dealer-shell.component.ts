@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Hand } from 'src/app/hand/models/hand';
 import { Player, defaultPlayer } from 'src/app/user/models/player';
 import { PlayerService } from 'src/app/user/services/player.service';
 
@@ -10,19 +11,18 @@ import { PlayerService } from 'src/app/user/services/player.service';
 export class DealerShellComponent implements OnInit {
   @Input() username: string;
   @Input() gameId: number;
-  @Input() hand_Id: number;
+  @Input() hand_id: number;
+  @Input() dealerHand: Hand;
   player: Player = defaultPlayer;
 
   constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {
-    console.log('HAND ID PASSED IN: ', this.hand_Id);
+    console.log('HAND ID PASSED IN: ', this.hand_id);
     console.log('GAME_ID PASSED IN:  ', this.gameId);
     console.log('USERNAME PASS IN: ', this.username);
 
-    this.playerServe(this.username).then((playr: Player) => {
-      this.player = playr;
-    });
+
   }
   playerServe(username: string): Promise<Player> {
     let promisePlayer: Promise<Player> = new Promise<Player>(

@@ -7,7 +7,7 @@ import { Hand } from '../models/hand';
   styleUrls: ['./handbuttons.component.scss']
 })
 export class HandbuttonsComponent implements OnInit {
-  myColor = "blue";
+  myColor = "gold";
   @Input() handId: number;
   constructor() { }
 

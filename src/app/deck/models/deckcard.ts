@@ -1,12 +1,12 @@
 export interface DeckCard {
-  id: Number;
-  deck_id: Number;
-  face: String;
-  suite: String;
-  h_value: Number;
-  l_value: Number;
-  value: Number;
-  url: String;
+  id: number;
+  deck_id: number;
+  face: string;
+  suite: string;
+  h_value: number;
+  l_value: number;
+  value: number;
+  url: string;
   used: Boolean;
 }
 

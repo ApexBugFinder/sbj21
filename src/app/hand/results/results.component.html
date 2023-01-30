@@ -4,11 +4,11 @@
   <div class="totalContainer">
     <div class="total">
       <p>High: </p>
-      <p>{{hand.h_value}}</p>
+      <p *ngIf="hand">{{hand?.h_value}}</p>
     </div>
     <div class="total">
       <p>Low: </p>
-      <p>{{hand.l_value}}</p>
+      <p *ngIf="hand">{{hand?.l_value}}</p>
     </div>
      <div class="total">
       <p>Remaining: </p>

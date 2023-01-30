@@ -9,6 +9,9 @@ import { SharedModule } from '../shared/shared.module';
 import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { CardsModule } from '../cards/cards.module';
+import { HandService } from './services/hand.service';
+import { PlayerHandResolver } from './services/hand.player.resolver';
+import { DealerHandResolver } from './services/hand.dealer.resolver';
 
 @NgModule({
   declarations: [
@@ -27,5 +30,6 @@ import { CardsModule } from '../cards/cards.module';
     ShellComponent,
   ],
   entryComponents: [HandstatusComponent, ShellComponent],
+  providers: [HandService, PlayerHandResolver, DealerHandResolver],
 })
 export class HandModule {}

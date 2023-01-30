@@ -5,7 +5,8 @@ export interface Card {
   l_value: number;
   h_value: number;
   url: string;
-
+  deck_id?: number;
+  used?: boolean;
 }
 
 export const defaultCard: Card = {

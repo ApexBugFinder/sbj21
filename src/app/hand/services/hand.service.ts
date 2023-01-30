@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map, timeout } from 'rxjs';
 import { of } from 'rxjs';
 import { Constants } from 'src/app/helpers/Constants';
-import { Hand, HandInfo, defaultHand } from '../models/hand';
+import { Hand,HandCards, HandInfo, defaultHand } from '../models/hand';
 
 @Injectable({
   providedIn: 'root',
@@ -29,14 +29,14 @@ export class HandService {
 
 const address = 'read/' + hand_id;
 const req_address = this.apiAddress + address;
-console.log('REQ ADDRESS: ', req_address);
+
 let hdrs = new HttpHeaders();
 hdrs = hdrs.append('Access-Control-Allow-Origin', [
   this.apiRt,
   this.apiAddress,
   Constants.clientRoot,
 ]);
-console.log('REQ ADDRESS: ', req_address);
+
 hdrs = hdrs.append('Access-Control-Allow-Methods', ['GET']);
 hdrs = hdrs.append('content-type', 'application/json');
 let item = {
@@ -57,14 +57,14 @@ let item = {
 
     const address = 'create';
     const req_address = this.apiAddress + address;
-    console.log('REQ ADDRESS: ', req_address);
+
     let hdrs = new HttpHeaders();
     hdrs = hdrs.append('Access-Control-Allow-Origin', [
       this.apiRt,
       this.apiAddress,
       Constants.clientRoot,
     ]);
-    console.log('REQ ADDRESS: ', req_address);
+
     hdrs = hdrs.append('Access-Control-Allow-Methods', ['POST']);
     hdrs = hdrs.append('content-type', 'application/json');
     let item = {
@@ -90,14 +90,13 @@ let item = {
   public getHandInfo(handId: number): Observable<any>{
    const address = 'read/info/' + handId;
    const req_address = this.apiAddress + address;
-   console.log('REQ ADDRESS: ', req_address);
+
    let hdrs = new HttpHeaders();
    hdrs = hdrs.append('Access-Control-Allow-Origin', [
      this.apiRt,
      this.apiAddress,
      Constants.clientRoot,
    ]);
-   console.log('REQ ADDRESS: ', req_address);
    hdrs = hdrs.append('Access-Control-Allow-Methods', ['GET']);
    hdrs = hdrs.append('content-type', 'application/json');
  let item = {
@@ -108,7 +107,29 @@ let item = {
       console.log('Returned handInfo:\n', this.printServiceInfo(req_address, handInfo, hdrs));
       return handInfo;
 }))
-}
+  }
+
+  public getHandCards(handId: number): Observable<HandCards>{
+      const address = 'read/cards/' + handId;
+      const req_address = this.apiAddress + address;
+
+      let hdrs = new HttpHeaders();
+      hdrs = hdrs.append('Access-Control-Allow-Origin', [
+        this.apiRt,
+        this.apiAddress,
+        Constants.clientRoot,
+      ]);
+      hdrs = hdrs.append('Access-Control-Allow-Methods', ['GET']);
+      hdrs = hdrs.append('content-type', 'application/json');
+      let item = {};
+      this.printServiceInfo(req_address, item, hdrs);
+    return this.http.get<HandCards>(req_address, { headers: hdrs }).pipe(timeout(5000), map((handCards: HandCards) => {
+      console.log(
+        'Returned handCards to HandService:\n',
+        this.printServiceInfo(req_address, handCards, hdrs));
+      return handCards;
+    }))
+  }
 
 
 

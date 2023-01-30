@@ -31,7 +31,7 @@ export class DeckShellComponent implements OnInit {
             this.bkCard = element;
             }
         });
-        // this.bkCard = deckcards.reduce((prev, current) => prev || current.face === 'BK1'? current: null);
+    
         console.log(this.gameId);
         console.log(this.bkCard)
         return deckcards;

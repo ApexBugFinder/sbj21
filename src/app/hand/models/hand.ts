@@ -25,3 +25,9 @@ export const defaultHand: Hand = {
   l_value: 0,
   user_id: 1
 };
+
+export interface HandCards
+{
+  cards: DeckCard[],
+    hand: Hand
+};

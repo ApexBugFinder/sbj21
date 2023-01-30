@@ -16,7 +16,9 @@ import { SidenavComponent } from './user/login/sidenav/sidenav.component';
 import { CardsModule } from './cards/cards.module';
 import { UserModule } from './user/user.module';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-
+import { HandService } from './hand/services/hand.service';
+import { PlayerHandResolver } from './hand/services/hand.player.resolver';
+import { DealerHandResolver } from './hand/services/hand.dealer.resolver';
 
 @NgModule({
   declarations: [
@@ -37,11 +39,9 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     FontAwesomeModule,
     UserModule,
   ],
-  exports:[PlayerShellComponent, TableShellComponent],
+  exports: [PlayerShellComponent, TableShellComponent],
 
-  providers: [
-
-  ],
+  providers: [HandService, PlayerHandResolver, DealerHandResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

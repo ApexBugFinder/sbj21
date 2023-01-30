@@ -2,7 +2,7 @@ import { AfterContentInit, Component, DoCheck, Input, OnInit, resolveForwardRef 
 import { Observable } from 'rxjs';
 import { Player, defaultPlayer } from 'src/app/user/models/player';
 import { PlayerService } from 'src/app/user/services/player.service';
-import { Hand, HandInfo, defaultHand } from '../models/hand';
+import { Hand, HandCards, HandInfo, defaultHand } from '../models/hand';
 import { HandService } from '../services/hand.service';
 import { DeckCard } from 'src/app/deck/models/deckcard';
 
@@ -12,109 +12,62 @@ import { DeckCard } from 'src/app/deck/models/deckcard';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
 })
-export class ShellComponent implements OnInit{
+export class ShellComponent implements OnInit {
   @Input() player_name: string;
   @Input() player: Player;
   @Input() hand_id: number;
+  @Input() gameId: number;
 
-  
-  public hand: Hand;
+  @Input() hand: Hand;
+  handcards: HandCards;
   cards: DeckCard[];
   status = '';
   constructor(
     private playerService: PlayerService,
     private handService: HandService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     console.log('HAND ID PASSED IN: ', this.hand_id);
+    console.log('HAND PASSED IN: ', this.hand);
+    console.log('player_name PASSED INTO SHELL: ', this.player_name);
+    console.log('player PASSED INTO SHELL: ', this.player);
 
-    if (this.hand_id && this.hand_id !== undefined) {
-      this.getHandInfo(this.hand_id).then((rthand: Hand) => {
-        this.hand = rthand;
-        console.log('HAND RETurned: ', this.hand)
-      }).catch(err => console.log('Error retrieving HandInfo', err));
+    this.getHandCards(this.hand_id)
+      .then((rthand: HandCards) => {
+        this.handcards = rthand;
+        console.log('HAND RETurned to handcards Comp: ', this.handcards);
+        console.log(
+          'HAND [CARDS] RETurned to handcards Comp: ',
+          this.handcards['cards']
+        );
+        console.log(
+          'HAND CARDS RETurned to handcards Comp: ',
+          this.handcards.cards
+        );
 
-
-    }
-    // if (this.player_name  || this.player_name !== undefined) {
-    //   this.getPlayer(this.player_name)
-    //     .then((player: Player) => {
-    //       this.setPlayer(player);
-    //       console.log(
-    //         'RETURNED Player from getPlayer in shell.component: ',
-    //         this.player
-    //       );
-    //     })
-    //     .then(() => {
-    //       console.log(this.player);
-    //       if (this.hand_id && this.hand_id !== undefined)
-    //         this.newhand(this.hand_id)
-    //           .then((rthand: Hand) => {
-    //             this.setHand(rthand[0]);
-
-    //             console.log(
-    //               'Hand returned to Shell Component from HandService: ',
-    //               this.hand
-    //             );
-    //             return this.hand;
-    //           })
-    //           .catch((err) =>
-    //             console.log('Error returning hand to shell component: ', err)
-    //           );
-    //     })
-    //     .catch((err) =>
-    //       console.log('Error occured getting player in shell component: ', err)
-    //     );
-    }
-
-  // newhand(handId: number): Promise<Hand> {
-
-  //   let handPromise: Promise<Hand> = new Promise<Hand>((resolve, reject) => {
-  //     if (!handId || handId === undefined) {
-  //       reject('No handId supplied');
-  //     }
-  //     this.handService.getHandById(handId).subscribe((hand: Hand) => {
-  //       resolve(hand);
-  //     });
-  //   });
-  //   return handPromise;
-  // }
-
-  // getPlayer(username: string): Promise<Player> {
-  //   let playerPromise: Promise<Player> = new Promise<Player>(
-  //     (resolve, reject) => {
-  //       if (username === undefined)
-  //         reject('username is not defined')
-  //       this.playerService
-  //         .getPlayerByName(username)
-  //         .subscribe((player: Player) => {
-  //           resolve(player);
-  //         });
-  //     }
-  //   );
-  //   return playerPromise;
-  // }
-  setPlayer(p: Player) {
-    this.player = p;
+        this.cards = this.handcards.cards;
+        console.log('CARDS in CARDS COMP:', this.cards);
+      })
+      .catch((err) => console.log('Error retrieving HandInfo', err));
   }
-  setHand(h: Hand) {
-    this.status = h.status;
-    this.hand = h;
-  }
-
-  getHandInfo(handId: number): Promise<Hand> {
-    let handPromise: Promise<Hand> = new Promise<Hand>((resolve, reject) => {
-      if (!handId || handId === undefined) {
-        reject('handId is not defined');
+  getHandCards(handId: number): Promise<HandCards> {
+    let handPromise: Promise<HandCards> = new Promise<HandCards>(
+      (resolve, reject) => {
+        if (!handId || handId === undefined) {
+          reject('handId is not defined');
+        }
+        this.handService
+          .getHandCards(handId)
+          .subscribe((handCards: HandCards) => {
+            resolve(handCards);
+          });
       }
-      this.handService.getHandById(handId).subscribe((hand: Hand) => {
-        resolve(hand);
-      });
-    });
+    );
     return handPromise;
   }
 
+  
 
 
 }
