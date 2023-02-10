@@ -4,25 +4,20 @@ import { LoginComponent } from './login/login.component';
 import { SidenavComponent } from './login/sidenav/sidenav.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { StoreModule } from '@ngrx/store';
+import {   userReducers} from './index';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SidenavComponent
-  ],
+  declarations: [LoginComponent, SidenavComponent],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('user', userReducers),
   ],
   exports: [SidenavComponent, LoginComponent],
 
-  entryComponents: [
-    LoginComponent,
-    SidenavComponent
-  ]
+  entryComponents: [LoginComponent, SidenavComponent],
 })
-export class UserModule { }
+export class UserModule {}

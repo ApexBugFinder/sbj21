@@ -11,10 +11,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
   imports: [
+    MatAutocompleteModule,
     MatButtonModule,
     MatTableModule,
     MatCardModule,
@@ -30,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
   ],
   exports: [
+    MatAutocompleteModule,
     MatButtonModule,
     MatTableModule,
     MatCardModule,

@@ -33,23 +33,25 @@ export class ShellComponent implements OnInit {
     console.log('player_name PASSED INTO SHELL: ', this.player_name);
     console.log('player PASSED INTO SHELL: ', this.player);
 
-    this.getHandCards(this.hand_id)
-      .then((rthand: HandCards) => {
-        this.handcards = rthand;
-        console.log('HAND RETurned to handcards Comp: ', this.handcards);
-        console.log(
-          'HAND [CARDS] RETurned to handcards Comp: ',
-          this.handcards['cards']
-        );
-        console.log(
-          'HAND CARDS RETurned to handcards Comp: ',
-          this.handcards.cards
-        );
+    if (this.hand_id) {
+      this.getHandCards(this.hand_id)
+        .then((rthand: HandCards) => {
+          this.handcards = rthand;
+          console.log('HAND RETurned to handcards Comp: ', this.handcards);
+          console.log(
+            'HAND [CARDS] RETurned to handcards Comp: ',
+            this.handcards['cards']
+          );
+          console.log(
+            'HAND CARDS RETurned to handcards Comp: ',
+            this.handcards.cards
+          );
 
-        this.cards = this.handcards.cards;
-        console.log('CARDS in CARDS COMP:', this.cards);
-      })
-      .catch((err) => console.log('Error retrieving HandInfo', err));
+          this.cards = this.handcards.cards;
+          console.log('CARDS in CARDS COMP:', this.cards);
+        })
+        .catch((err) => console.log('Error retrieving HandInfo', err));
+    }
   }
   getHandCards(handId: number): Promise<HandCards> {
     let handPromise: Promise<HandCards> = new Promise<HandCards>(
@@ -67,7 +69,7 @@ export class ShellComponent implements OnInit {
     return handPromise;
   }
 
-  
+
 
 
 }

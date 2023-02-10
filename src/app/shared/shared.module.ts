@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { StoreModule } from '@ngrx/store';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
+import { sharedReducers } from './state';
+import { EffectsModule } from '@ngrx/effects';
+import { SharedEffects } from './state/shared.effects';
 
 @NgModule({
   declarations: [],
@@ -13,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     MaterialModule,
     RouterModule,
-    FlexLayoutModule,
+    StoreModule.forFeature('shared', sharedReducers),
+    EffectsModule.forFeature([SharedEffects]),
     BrowserModule,
     HttpClientModule
   ],
@@ -21,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     MaterialModule,
     RouterModule,
-    FlexLayoutModule,
+
     BrowserModule,
     HttpClientModule
   ]

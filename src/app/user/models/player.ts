@@ -4,7 +4,7 @@ export interface Player{
   id: number;
   name: string;
   limit: number;
-  created_at: Date | undefined;
+  created_at?: Date;
   hand?:Hand
 }
 
@@ -12,5 +12,5 @@ export const defaultPlayer = {
   id: 1,
   name: '',
   limit: 0,
-  created_at: undefined,
+  created_at: new Date(),
 };

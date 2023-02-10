@@ -71,7 +71,6 @@ export class HandstatusComponent implements OnInit {
   capitalizeFirst(stringToCap: string) {
     let first = stringToCap[0];
     let rest = stringToCap.slice(1);
-    console.log('stringTocccppa: ', stringToCap);
     return first.toUpperCase() + rest;
   }
 }

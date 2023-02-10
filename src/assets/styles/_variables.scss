@@ -1,13 +1,13 @@
-@import '~@angular/material/theming';
+// // @import '~@angular/material/theming';
+
+// @import "@angular/material/prebuilt-themes/indigo-pink.css";
+// $primary: mat-palette($mat-green, 700,300, 900);
+// $accent: mat-palette($mat-amber, A400, A200,A700);
+// $warn: mat-palette($mat-red);
+
+// $theme: mat-light-theme($primary, $accent, $warn);
 
 
-$primary: mat-palette($mat-green, 700,300, 900);
-$accent: mat-palette($mat-amber, A400, A200,A700);
-$warn: mat-palette($mat-red);
+// $custom-colors:(custom-color-grey: mat-color($mat-grey, 300));
 
-$theme: mat-light-theme($primary, $accent, $warn);
-
-
-$custom-colors:(custom-color-grey: mat-color($mat-grey, 300));
-
-$theme: map-merge($theme, (custom-colors: $custom-colors))
+// $theme: map-merge($theme, (custom-colors: $custom-colors))
