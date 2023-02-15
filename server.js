@@ -26,3 +26,11 @@ app.get("/*", function (req, res) {
 app.listen(PORT, function () {
   console.log(`server listening on port ${PORT}`);
 });
+
+
+// "@angular/flex-layout": "^14.0.0-beta.41",
+  // "@angular/material": "^14.2.7",
+// "@angular/cdk": "^14.2.7",
+    // "@fortawesome/angular-fontawesome": "^0.11.1",
+    // "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    // "@fortawesome/free-solid-svg-icons": "^6.1.1",

@@ -23,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { userReducers } from './user';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(userReducers),
     StoreDevtoolsModule.instrument({
       name: 'SBJ Devtools',
       maxAge: 25,

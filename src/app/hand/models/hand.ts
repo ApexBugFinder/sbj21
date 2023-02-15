@@ -4,7 +4,7 @@ import { Player } from "src/app/user/models/player";
     export interface Hand {
       id: number,
       status: string,
-      player_limit: Number,
+      player_limit: number,
       h_value: number,
       l_value: number,
       user_id?: number,

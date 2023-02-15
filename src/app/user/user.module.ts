@@ -6,6 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import {   userReducers} from './index';
+import { EffectsModule } from '@ngrx/effects';
+import { PlayerEffects } from './player-shell/state/player.effects';
+import { DealerEffects } from './dealer-shell/state/dealer.effects';
 
 @NgModule({
   declarations: [LoginComponent, SidenavComponent],
@@ -14,7 +17,8 @@ import {   userReducers} from './index';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('user', userReducers),
+    StoreModule.forFeature('users', userReducers),
+    EffectsModule.forFeature([PlayerEffects,DealerEffects])
   ],
   exports: [SidenavComponent, LoginComponent],
 

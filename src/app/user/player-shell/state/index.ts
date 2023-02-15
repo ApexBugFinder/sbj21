@@ -13,7 +13,7 @@ export interface State extends fromUserRoot.UserModuleState {
 
 
 
-const getPlayerFeatureState = createFeatureSelector<PlayerState>('player');
+export const getPlayerFeatureState = createFeatureSelector<PlayerState>('player');
 
 export const getPlayer = createSelector(
   getPlayerFeatureState,

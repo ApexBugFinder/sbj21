@@ -10,7 +10,7 @@ import { Player } from '../../models/player';
 @Injectable()
 export class PlayerEffects {
   playerUsername$: Observable<string | undefined>;
-  username: string | undefined;
+  username: string  = 'test_player';
   constructor(
     private actions$: Actions,
     private playerService: PlayerService,
@@ -19,7 +19,12 @@ export class PlayerEffects {
     this.playerUsername$ = this.playerStore.pipe(
       select(fromPlayer.getUsername)
     );
-    this.playerUsername$.subscribe((value) => (this.username = value));
+    this.playerUsername$.subscribe((value) => {
+      if (value) {
+        this.username = value;
+        }
+      }
+    );
   }
   LoadPlayer$ = createEffect(() =>
     this.actions$.pipe(

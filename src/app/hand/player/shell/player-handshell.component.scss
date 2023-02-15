@@ -1,0 +1,33 @@
+.handContainer {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  justify-content: space-between;
+  grid-template-areas:
+  "cards results"
+  "dead buttons"
+  ;
+  grid-template-columns: 700px 300px;
+  grid-template-rows: 220px 50px;
+
+  .cardsCont {
+    grid-area: cards;
+    width: 750px;
+    margin-top:10px;
+  }
+  .resultsCont {
+    margin-top: 10px;
+    grid-area: results;
+    justify-content: flex-end;
+  }
+  .buttonContainer {
+    grid-area: buttons;
+    align-self: flex-end;
+    margin: auto auto 10px auto;
+  }
+}
+

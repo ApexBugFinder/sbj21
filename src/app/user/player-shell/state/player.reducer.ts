@@ -8,7 +8,7 @@ export interface PlayerState {
 }
 
 const initialState: PlayerState = {
-  username: '',
+  username: 'test_player',
   player: defaultPlayer,
   error: '',
 };
