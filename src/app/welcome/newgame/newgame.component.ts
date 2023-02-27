@@ -46,93 +46,14 @@ export class NewgameComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.dealer = defaultPlayer;
-    // this.player = defaultPlayer;
+
 
   }
   login() {
 
   }
 
-  // GET PLAYERs
-  // CREATE GAME
-  // CREATE HANDS FOR EACH PLAYER
-//   game() {
-//     this.dealerName = 'dealer';
-//     this.visitorplayerName = 'test_player';
 
-//     this.getPlayers().then((players) => {
-//       console.log('Final Count of players retrieved: ', players.length);
-//       console.log('Players: ', players);
-//       players.forEach((i) => {
-//         if (i.name === 'dealer') {
-//           this.dealer = i;
-//           this.sharedStore.dispatch(new sharedActions.SetDealer(i));
-//         } else {
-//           this.player = i;
-//           this.sharedStore.dispatch(new sharedActions.SetGuestPlayer(i));
-//         }
-//       });
-//       this.gamePlayers = players;
-//       // GET GAME PROMISE
-
-
-
-
-
-
-
-
-
-
-
-//       // this.gameServe(this.player, this.dealer).then((returnedGame: Game) => {
-//       //   console.log('ReturnedGame to NEW GAME COMP: ', returnedGame);
-//       //   this.newGame = returnedGame;
-
-
-
-//       //     this.createHandServe(this.player.id, returnedGame.id)
-//       //       .then((handReturned: Hand) => {
-//       //         console.log('Hand Returned to NEW GAME COMPONENT: ', handReturned);
-//       //         this.playerHand= handReturned;
-//       //       }).then(() => {
-//       //               this.createHandServe(this.dealer.id, returnedGame.id).then(
-//       //                 (handReturned2: Hand) => {
-//       //                   console.log(
-//       //                     'Hand Returned to NEW GAME COMPONENT: ',
-//       //                     handReturned2
-//       //                   );
-//       //                   this.dealerHand = handReturned2;
-//       //                   this.closeDialog();
-//       //                   this.dialogRef.close();
-//       //                   this.router.navigate([
-//       //                     '/casino',
-//       //                     {
-//       //                       gameId: this.newGame.id,
-//       //                       player: this.player.name,
-//       //                       player_hand_id: this.playerHand.id,
-//       //                       dealer: this.dealer.name,
-//       //                       dealer_hand_id: this.dealerHand.id,
-//       //                     },
-//       //                   ]);
-
-
-
-//       //                 }
-//       //               );
-//       //       }).finally(() => {
-
-//       //       })
-//       //       .catch((err) =>
-//       //         console.log(`ERRor while getting player hand: `, err)
-//       //       );
-
-
-//       // });
-//     });
-
-// }
 
   game() {
     //  GET GUEST PLAYERS
@@ -145,21 +66,33 @@ export class NewgameComponent implements OnInit {
         if (i.name === 'dealer') {
           this.dealer = i;
           this.sharedStore.dispatch(new sharedActions.SetDealer(i));
-          this.gamePlayers["dealer"] = i;
+          this.gamePlayers['dealer'] = i;
         } else {
           this.player = i;
           this.gamePlayers['player'] = i;
           this.sharedStore.dispatch(new sharedActions.SetGuestPlayer(i));
         }
-
-
       });
-       this.sharedStore.dispatch(new sharedActions.CreateGame());
+      this.sharedStore.dispatch(new sharedActions.CreateGame());
+
       console.log('the gameGplayers: ', this.gamePlayers);
       // START GAME
 
-
       // DIRECT TO CASINO
+      this.closeDialog();
+      this.sharedStore.pipe(select(fromShared.getGameId)).subscribe((gid: number)=>{
+      this.router.navigate([
+              '/casino',
+              {
+                gameId: gid,
+                player: this.player.name,
+                dealer: this.dealer.name,
+
+              },
+            ]);
+
+      })
+
     });
 
 

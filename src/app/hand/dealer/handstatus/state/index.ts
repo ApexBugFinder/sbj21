@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromHandRoot from '../../index';
-import {HandStatusState} from './dealer-handstatus.reducer'
+import * as fromHandRoot from '../../../index';
+import {DealerHandStatusState} from './dealer-handstatus.reducer'
 
 export interface State extends fromHandRoot.HandModuleState{
-  handStatusState:HandStatusState
+  handStatusState:DealerHandStatusState
 }
 
-const getHandStatusFeatureState = createFeatureSelector<HandStatusState>('handstatus');
+const getHandStatusFeatureState = createFeatureSelector<DealerHandStatusState>('dealerhandstatus');
 
 
 export const getHandId = createSelector(

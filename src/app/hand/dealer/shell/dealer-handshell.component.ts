@@ -12,17 +12,19 @@ import { PlayerService } from 'src/app/user/services/player.service';
 import { Hand, HandCards, HandInfo, defaultHand } from '../../models/hand';
 import { HandService } from '../../services/hand.service';
 import { DeckCard } from 'src/app/deck/models/deckcard';
-
+import { Store, select } from '@ngrx/store';
+import * as fromDealerHandStatus from '../handstatus/state';
+import * as DealerHandStatusActions from '../handstatus/state/dealer-handstatus.actions';
 @Component({
   selector: 'app-dealer-handshell',
   templateUrl: './dealer-handshell.component.html',
   styleUrls: ['./dealer-handshell.component.scss'],
 })
 export class DealerHandShellComponent implements OnInit {
-  @Input() player_name: string;
+  player_name: string;
   @Input() player: Player;
-  @Input() hand_id: number;
-  @Input() gameId: number;
+
+  player_name$: Observable<string>;
 
   @Input() hand: Hand;
   handcards: HandCards;
@@ -30,48 +32,20 @@ export class DealerHandShellComponent implements OnInit {
   status = '';
   constructor(
     private playerService: PlayerService,
-    private handService: HandService
-  ) {}
+    private handService: HandService,
+    private dealHandStatusStore: Store<fromDealerHandStatus.State>
+  ) {
+
+  }
 
   ngOnInit(): void {
-    console.log('HAND ID PASSED IN: ', this.hand_id);
-    console.log('HAND PASSED IN: ', this.hand);
-    console.log('player_name PASSED INTO SHELL: ', this.player_name);
-    console.log('player PASSED INTO SHELL: ', this.player);
 
-    if (this.hand_id) {
-      this.getHandCards(this.hand_id)
-        .then((rthand: HandCards) => {
-          this.handcards = rthand;
-          console.log('HAND RETurned to handcards Comp: ', this.handcards);
-          console.log(
-            'HAND [CARDS] RETurned to handcards Comp: ',
-            this.handcards['cards']
-          );
-          console.log(
-            'HAND CARDS RETurned to handcards Comp: ',
-            this.handcards.cards
-          );
 
-          this.cards = this.handcards.cards;
-          console.log('CARDS in CARDS COMP:', this.cards);
-        })
-        .catch((err) => console.log('Error retrieving HandInfo', err));
-    }
+    if (this.player != defaultPlayer)
+    console.log('Dealer PASSED INTO SHELL: ', this.player);
+
+
+
   }
-  getHandCards(handId: number): Promise<HandCards> {
-    let handPromise: Promise<HandCards> = new Promise<HandCards>(
-      (resolve, reject) => {
-        if (!handId || handId === undefined) {
-          reject('handId is not defined');
-        }
-        this.handService
-          .getHandCards(handId)
-          .subscribe((handCards: HandCards) => {
-            resolve(handCards);
-          });
-      }
-    );
-    return handPromise;
-  }
+
 }

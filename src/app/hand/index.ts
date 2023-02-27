@@ -8,44 +8,40 @@ import {
 import * as fromDealerHand from './dealer/shell/state/dealer-hand.reducer';
 import * as fromDealerHandStatus from './dealer/handstatus/state/dealer-handstatus.reducer';
 import * as fromDealerHandResults from './dealer/results/state/dealer-handresults.reducer';
-import * as fromDealerHandCards from './dealer/cards/state/dealer_handcards.reducer';
+import * as fromDealerHandCards from './dealer/cards/state/dealer-handcards.reducer';
 
 import * as fromPlayerHand from './player/shell/state/player-hand.reducer';
 import * as fromPlayerHandCards from './player/cards/state/player-handcards.reducer';
 import * as fromPlayerHandStatus from './player/handstatus/state/player-handstatus.reducer';
 import * as fromPlayerHandResults from './player/results/state/player-handresults.reducer';
-export interface HandModuleState
-{
-  dealerhand: fromDealerHand.DealerHandState,
-  dealerhandresults: fromDealerHandResults.DealerHandResultsState
-  dealerhandcards: fromDealerHandCards.DealerHandCardsState,
-  dealerhandstatus: fromDealerHandStatus.DealerHandStatusState,
-  playerhand: fromPlayerHand.PlayerHandState,
-  playerhandcards: fromPlayerHandCards.PlayerHandCardsState,
-  playerhandstatus: fromPlayerHandStatus.PlayerHandStatusState,
-  playerhandresults: fromPlayerHandResults.PlayerHandResultsState
+export interface HandModuleState {
+  dealerhand: fromDealerHand.DealerHandState;
+  dealerhandresults: fromDealerHandResults.DealerHandResultsState;
+  dealerhandcards: fromDealerHandCards.DealerHandDeckCardsState;
+  dealerhandstatus: fromDealerHandStatus.DealerHandStatusState;
+  playerhand: fromPlayerHand.PlayerHandState;
+  playerhandcards: fromPlayerHandCards.PlayerHandDeckCardsState;
+  playerhandstatus: fromPlayerHandStatus.PlayerHandStatusState;
+  playerhandresults: fromPlayerHandResults.PlayerHandResultsState;
 }
 
-
-export interface State extends fromRoot.State
-{
-  handModule: HandModuleState
- }
-
- export const handReducers: ActionReducerMap<HandModuleState, any > = {
-   dealerhand: fromDealerHand.handReducer,
-   dealerhandstatus: fromDealerHandStatus.dealerhandstatusReducer,
-   dealerhandresults: fromDealerHandResults.handResultsReducer,
-   dealerhandcards: fromDealerHandCards.reducer,
-   playerhand: fromPlayerHand.handReducer,
-   playerhandcards: fromPlayerHandCards.reducer,
-   playerhandstatus: fromPlayerHandStatus.playerhandstatusReducer,
-   playerhandresults: fromPlayerHandResults.playerhandResultsReducer
+export interface State extends fromRoot.State {
+  handModule: HandModuleState;
 }
 
-export const selectHandModuleState = createFeatureSelector<HandModuleState>('hands');
+export const handReducers: ActionReducerMap<HandModuleState, any> = {
+  dealerhand: fromDealerHand.handReducer,
+  dealerhandstatus: fromDealerHandStatus.dealerhandstatusReducer,
+  dealerhandresults: fromDealerHandResults.handResultsReducer,
+  dealerhandcards: fromDealerHandCards.reducer,
+  playerhand: fromPlayerHand.handReducer,
+  playerhandcards: fromPlayerHandCards.reducer,
+  playerhandstatus: fromPlayerHandStatus.playerhandstatusReducer,
+  playerhandresults: fromPlayerHandResults.playerhandResultsReducer,
+};
 
-
+export const selectHandModuleState =
+  createFeatureSelector<HandModuleState>('hands');
 
 // ===========
 //  HAND * DEALER
@@ -54,19 +50,19 @@ export const selectDealerHandState = createSelector(
   (state: HandModuleState) => state.dealerhand
 );
 export const getDealerHandId = createSelector(
- selectDealerHandState,
+  selectDealerHandState,
   (state: fromDealerHand.DealerHandState) => state.handId
 );
 export const getDealerGameId = createSelector(
- selectDealerHandState,
+  selectDealerHandState,
   (state: fromDealerHand.DealerHandState) => state.gameId
 );
 export const getDealerUserId = createSelector(
- selectDealerHandState,
+  selectDealerHandState,
   (state: fromDealerHand.DealerHandState) => state.userId
 );
-export const getDealerError= createSelector(
- selectDealerHandState,
+export const getDealerError = createSelector(
+  selectDealerHandState,
   (state: fromDealerHand.DealerHandState) => state.error
 );
 
@@ -103,14 +99,13 @@ export const selectDealerHandResultsState = createSelector(
 export const getDealerHandResults = createSelector(
   selectDealerHandResultsState,
   (state: fromDealerHandResults.DealerHandResultsState) => {
-
     return {
       handId: state.handId,
       h_value: state.h_value,
       l_value: state.l_value,
       player_limit: state.player_limit,
-      user_id: state.user_id
-    }
+      user_id: state.user_id,
+    };
   }
 );
 export const getDealerHand_h_value = createSelector(
@@ -138,7 +133,6 @@ export const getDealerHandResults_Error = createSelector(
   selectDealerHandResultsState,
   (state: fromDealerHandResults.DealerHandResultsState) => state.error
 );
-
 
 //  ----------============
 // RESULTS - Player
@@ -185,8 +179,6 @@ export const getPlayerHandResults_Error = createSelector(
   (state: fromPlayerHandResults.PlayerHandResultsState) => state.error
 );
 
-
-
 // +======================
 // STATUS - DEALER
 export const selectDealerHandStatusState = createSelector(
@@ -218,7 +210,10 @@ export const getPlayerHandStatus = createSelector(
   (state: fromPlayerHandStatus.PlayerHandStatusState) => state.status
 );
 
-
+export const getPlayerHandStatusUsername = createSelector(
+  selectPlayerHandStatusState,
+  (state: fromPlayerHandStatus.PlayerHandStatusState) => state.username
+);
 
 // ================
 // CARDS - DEALER
@@ -229,10 +224,17 @@ export const selectDealerHandCardsState = createSelector(
 
 export const getDealerHandCards = createSelector(
   selectDealerHandCardsState,
-  (state: fromDealerHandCards.DealerHandCardsState) => {
-    return Object.values(state.entities)
+  (state: fromDealerHandCards.DealerHandDeckCardsState) => {
+    return Object.values(state.entities);
   }
-)
+);
+
+export const getDealerHandCardsCount = createSelector(
+  selectDealerHandCardsState,
+  (state: fromDealerHandCards.DealerHandDeckCardsState) => {
+    return Object.values(state.entities).length;
+  }
+);
 
 // ================
 // CARDS - PLAYER
@@ -242,11 +244,14 @@ export const selectPlayerHandCardsState = createSelector(
 );
 export const getPlayerHandCards = createSelector(
   selectPlayerHandCardsState,
-  (state: fromPlayerHandCards.PlayerHandCardsState) => {
+  (state: fromPlayerHandCards.PlayerHandDeckCardsState) => {
     return Object.values(state.entities);
   }
 );
 
-
-
-
+export const getPlayerHandCardsCount = createSelector(
+  selectPlayerHandCardsState,
+  (state: fromPlayerHandCards.PlayerHandDeckCardsState) => {
+    return Object.values(state.entities).length;
+  }
+);

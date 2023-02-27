@@ -19,12 +19,12 @@ import { DeckCard } from 'src/app/deck/models/deckcard';
   styleUrls: ['./player-handshell.component.scss'],
 })
 export class PlayerHandShellComponent implements OnInit {
-  @Input() player_name: string;
-  @Input() player: Player;
-  @Input() hand_id: number;
-  @Input() gameId: number;
 
-  @Input() hand: Hand;
+  @Input() player: Player;
+
+
+  hand$: Observable<Hand>;
+  hand: Hand;
   handcards: HandCards;
   cards: DeckCard[];
   status = '';
@@ -34,44 +34,11 @@ export class PlayerHandShellComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('HAND ID PASSED IN: ', this.hand_id);
-    console.log('HAND PASSED IN: ', this.hand);
-    console.log('player_name PASSED INTO SHELL: ', this.player_name);
+
+    if(this.player != defaultPlayer)
     console.log('player PASSED INTO SHELL: ', this.player);
 
-    if (this.hand_id) {
-      this.getHandCards(this.hand_id)
-        .then((rthand: HandCards) => {
-          this.handcards = rthand;
-          console.log('HAND RETurned to handcards Comp: ', this.handcards);
-          console.log(
-            'HAND [CARDS] RETurned to handcards Comp: ',
-            this.handcards['cards']
-          );
-          console.log(
-            'HAND CARDS RETurned to handcards Comp: ',
-            this.handcards.cards
-          );
+  }
 
-          this.cards = this.handcards.cards;
-          console.log('CARDS in CARDS COMP:', this.cards);
-        })
-        .catch((err) => console.log('Error retrieving HandInfo', err));
-    }
-  }
-  getHandCards(handId: number): Promise<HandCards> {
-    let handPromise: Promise<HandCards> = new Promise<HandCards>(
-      (resolve, reject) => {
-        if (!handId || handId === undefined) {
-          reject('handId is not defined');
-        }
-        this.handService
-          .getHandCards(handId)
-          .subscribe((handCards: HandCards) => {
-            resolve(handCards);
-          });
-      }
-    );
-    return handPromise;
-  }
+
 }

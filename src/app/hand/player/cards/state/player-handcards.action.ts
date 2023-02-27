@@ -1,55 +1,56 @@
 import { createAction, props } from '@ngrx/store';
 import { Update, EntityMap, EntityMapOne, Predicate } from '@ngrx/entity';
-import { Card } from 'src/app/cards/models/card';
+import { DeckCard } from 'src/app/deck/models/deckcard';
 
 
 
-export const loadCards = createAction(
-  '[Card/API] Load Cards',
-  props<{ cards: Card[] }>()
+
+export const loadDeckCards = createAction(
+  '[PLAYER HandDeckCard/API] Load DeckCards',
+  props<{ cards: DeckCard[] }>()
 );
-export const addCard = createAction(
-  '[Card/API] Add Card',
-  props<{ card: Card }>()
+export const addDeckCard = createAction(
+  '[PLAYER HandDeckCard/API] Add DeckCard',
+  props<{ card: DeckCard }>()
 );
-export const setCard = createAction(
-  '[Card/API] Set Card',
-  props<{ card: Card }>()
+export const setDeckCard = createAction(
+  '[PLAYER HandDeckCard/API] Set DeckCard',
+  props<{ card: DeckCard }>()
 );
-export const upsertCard = createAction(
-  '[Card/API] Upsert Card',
-  props<{ card: Card }>()
+export const upsertDeckCard = createAction(
+  '[PLAYER HandDeckCard/API] Upsert DeckCard',
+  props<{ card: DeckCard }>()
 );
-export const addCards = createAction(
-  '[Card/API] Add Cards',
-  props<{ cards: Card[] }>()
+export const addDeckCards = createAction(
+  '[PLAYER HandDeckCard/API] Add DeckCards',
+  props<{ cards: DeckCard[] }>()
 );
-export const upsertCards = createAction(
-  '[Card/API] Upsert Cards',
-  props<{ cards: Card[] }>()
+export const upsertDeckCards = createAction(
+  '[PLAYER HandDeckCard/API] Upsert DeckCards',
+  props<{ cards: DeckCard[] }>()
 );
-export const updateCard = createAction(
-  '[Card/API] Update Card',
-  props<{ card: Update<Card> }>()
+export const updateDeckCard = createAction(
+  '[PLAYER HandDeckCard/API] Update DeckCard',
+  props<{ card: Update<DeckCard> }>()
 );
-export const updateCards = createAction(
-  '[Card/API] Update Cards',
-  props<{ cards: Update<Card>[] }>()
+export const updateDeckCards = createAction(
+  '[PLAYER HandDeckCard/API] Update DeckCards',
+  props<{ cards: Update<DeckCard>[] }>()
 );
-export const mapCards = createAction(
-  '[Card/API] Map Cards',
-  props<{ entityMap: EntityMap<Card> }>()
+export const mapDeckCards = createAction(
+  '[PLAYER HandDeckCard/API] Map DeckCards',
+  props<{ entityMap: EntityMap<DeckCard> }>()
 );
-export const deleteCard = createAction(
-  '[Card/API] Delete Card',
+export const deleteDeckCard = createAction(
+  '[PLAYER HandDeckCard/API] Delete DeckCard',
   props<{ id: string }>()
 );
-export const deleteCards = createAction(
-  '[Card/API] Delete Cards',
+export const deleteDeckCards = createAction(
+  '[PLAYER HandDeckCard/API] Delete DeckCards',
   props<{ ids: string[] }>()
 );
-export const deleteCardsByPredicate = createAction(
-  '[Card/API] Delete Cards By Predicate',
-  props<{ predicate: Predicate<Card> }>()
+export const deleteDeckCardsByPredicate = createAction(
+  '[PLAYER HandDeckCard/API] Delete DeckCards By Predicate',
+  props<{ predicate: Predicate<DeckCard> }>()
 );
-export const clearCards = createAction('[Card/API] Clear Cards');
+export const clearDeckCards = createAction('[PLAYER HandDeckCard/API] Clear DeckCards');

@@ -23,6 +23,7 @@ export function handReducer(
   action: PlayerHandActions
 ): PlayerHandState {
   switch (action.type) {
+    case playerhandActionTypes.ADD_CARDS_TO_PLAYER_HAND_SUCCESS:
     case playerhandActionTypes.CREATE_PLAYER_HAND_SUCCESS:
     case playerhandActionTypes.LOAD_HAND_SUCCESS:
       return {
@@ -31,6 +32,7 @@ export function handReducer(
         gameId: action.payload.game_id,
         userId: action.payload.user_id,
       };
+
     case playerhandActionTypes.SET_HAND_ID:
       return {
         ...state,
@@ -63,6 +65,7 @@ export function handReducer(
         ...state,
         userId: initialState.userId,
       };
+    case playerhandActionTypes.ADD_CARDS_TO_PLAYER_HAND_FAIL:
     case playerhandActionTypes.CREATE_PLAYER_HAND_FAIL:
     case playerhandActionTypes.LOAD_HAND_FAIL:
     case playerhandActionTypes.SET_GAME_ID_FAIL:

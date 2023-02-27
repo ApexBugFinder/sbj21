@@ -4,7 +4,10 @@ import { HandService } from '../../services/hand.service';
 import { DeckCard } from 'src/app/deck/models/deckcard';
 import { Card } from 'src/app/cards/models/card';
 import { Observable } from 'rxjs';
-import { MatDivider  } from '@angular/material/divider';
+import { MatDivider } from '@angular/material/divider';
+import * as fromHand from '../../index';
+import { Store, select } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-player-cards',
@@ -14,11 +17,9 @@ import { MatDivider  } from '@angular/material/divider';
 export class PlayerHandCardsComponent implements OnInit, DoCheck {
   @Input() hand_id: number;
 
-  handcards: HandCards;
-  handcards$: Observable<HandCards>;
-  @Input() cards: DeckCard[] = [];
-  constructor(private handService: HandService) {
-    this.handcards$ = this.handService.getHandCards(this.hand_id);
+  playerhandcards$: Observable<DeckCard[]>;
+  constructor(private handService: HandService, private handStore: Store<fromHand.HandModuleState>) {
+    this.playerhandcards$ = this.handStore.pipe(select(fromHand.getPlayerHandCards));
   }
 
   ngDoCheck(): void {}

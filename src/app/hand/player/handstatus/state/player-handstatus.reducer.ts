@@ -27,6 +27,7 @@ export function playerhandstatusReducer(state = initialState,
         ...state,
         handId: initialState.handId
       };
+    
     case playerhandstatusActionTypes.SET_HAND_STATUS:
       return {
         ...state,

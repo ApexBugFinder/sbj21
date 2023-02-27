@@ -11,10 +11,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dealer-shell.component.scss'],
 })
 export class DealerShellComponent implements OnInit {
-  @Input() username: string;
-  @Input() gameId: number;
-  @Input() hand_id: number;
-  @Input() dealerHand: Hand;
+
+
+
+
   player: Player = defaultPlayer;
   player$: Observable<Player>;
   constructor(private playerService: PlayerService,
@@ -23,27 +23,13 @@ export class DealerShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('HAND ID PASSED IN: ', this.hand_id);
-    console.log('GAME_ID PASSED IN:  ', this.gameId);
-    console.log('USERNAME PASS IN: ', this.username);
-    this.player$.subscribe((value: Player) => (this.player = value));
+
+    this.player$.subscribe((value: Player) => {
+      this.player = value
+      if (this.player != defaultPlayer)
+        console.log('DealerShell Player: ', this.player);
+    });
 
   }
-  playerServe(username: string): Promise<Player> {
-    let promisePlayer: Promise<Player> = new Promise<Player>(
-      (resolve, reject) => {
-        if (username === undefined) {
-          reject('the username was undefined');
-        } else {
-          this.playerService
-            .getPlayerByName(username)
-            .subscribe((result: Player) => {
-              resolve(result);
-            });
-        }
-      }
-    );
 
-    return promisePlayer;
-  }
 }

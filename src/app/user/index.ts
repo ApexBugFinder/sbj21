@@ -18,7 +18,7 @@ export interface State extends fromRoot.State {
 
 export const userReducers: ActionReducerMap<UserModuleState, any> = {
   player: fromPlayerShell.playerReducer,
-  dealer: fromDealerShell.playerReducer,
+  dealer: fromDealerShell.dealerReducer,
 };
 
 export const selectUserModuleState =

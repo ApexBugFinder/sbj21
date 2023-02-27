@@ -1,14 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromHandRoot from '../../../index';
 import * as fromHand from '../../../index'
-import { PlayerHandCardsState } from './player-handcards.reducer';
+import { PlayerHandDeckCardsState } from './player-handcards.reducer';
 
 
 export interface State extends fromHandRoot.HandModuleState{
-  handcardsState: PlayerHandCardsState
+  handcardsState: PlayerHandDeckCardsState
 }
 
-const getHandCardsFeatureState = createFeatureSelector<PlayerHandCardsState>('playerhandcards');
+const getHandCardsFeatureState = createFeatureSelector<PlayerHandDeckCardsState>('playerhandcards');
 
 export const selectAllCardEntites = createSelector(
   getHandCardsFeatureState,
@@ -56,7 +56,7 @@ export const selectTotalCardsCount = createSelector(
 );
 export const selectCardId = createSelector(
   getHandCardsFeatureState,
-  (state) => state.selectedCardId
+  (state) => state.selectedDeckCardId
 );
 
 

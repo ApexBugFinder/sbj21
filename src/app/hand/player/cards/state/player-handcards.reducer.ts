@@ -1,22 +1,23 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { defaultCard, Card } from '../../../../cards/models/card';
+
 import { Action, createReducer, createSelector, on } from '@ngrx/store';
-import * as HandCardActions from './player-handcards.action';
+import * as HandDeckCardActions from './player-handcards.action';
+import { DeckCard } from 'src/app/deck/models/deckcard';
 // import { selectAllProjects, selectCurrentProjectId } from '.';
 
 
-export interface PlayerHandCardsState extends EntityState<Card>{
+export interface PlayerHandDeckCardsState extends EntityState<DeckCard>{
   ids: number[],
-  entities: { [key: number]: Card | undefined };
-  selectedCardId: number | 0;
+  entities: { [key: number]: DeckCard | undefined };
+  selectedDeckCardId: number | 0;
 }
 
 
-export function selectCardId(a: Card): number {
+export function selectDeckCardId(a: DeckCard): number {
 
   return a.id;
 }
-export function sortByValue(a: Card, b: Card): number {
+export function sortByValue(a: DeckCard, b: DeckCard): number {
   let compare =
     (a.h_value) - (b.h_value);
   if (compare > 1) {
@@ -28,15 +29,15 @@ export function sortByValue(a: Card, b: Card): number {
   }
 }
 
-export const adapter: EntityAdapter<Card> = createEntityAdapter<Card>({
-  selectId: selectCardId,
+export const adapter: EntityAdapter<DeckCard> = createEntityAdapter<DeckCard>({
+  selectId: selectDeckCardId,
   sortComparer: sortByValue
 
 });
 
-export const initialState: PlayerHandCardsState = adapter.getInitialState({
+export const initialState: PlayerHandDeckCardsState = adapter.getInitialState({
   // additional entity state properties
-  selectedCardId: 0,
+  selectedDeckCardId: 0,
   ids: [],
   entities: {},
 });
@@ -44,53 +45,53 @@ export const initialState: PlayerHandCardsState = adapter.getInitialState({
 
 const cardReducer = createReducer(
   initialState,
-  on(HandCardActions.addCard, (state, { card }) => {
+  on(HandDeckCardActions.addDeckCard, (state, { card }) => {
     return adapter.addOne(card, state);
   }),
-  on(HandCardActions.setCard, (state, { card }) => {
+  on(HandDeckCardActions.setDeckCard, (state, { card }) => {
     return adapter.setOne(card, state);
   }),
-  on(HandCardActions.upsertCard, (state, { card }) => {
+  on(HandDeckCardActions.upsertDeckCard, (state, { card }) => {
     return adapter.upsertOne(card, state);
   }),
-  on(HandCardActions.addCards, (state, { cards }) => {
+  on(HandDeckCardActions.addDeckCards, (state, { cards }) => {
     return adapter.addMany(cards, state);
   }),
-  on(HandCardActions.upsertCards, (state, { cards }) => {
+  on(HandDeckCardActions.upsertDeckCards, (state, { cards }) => {
     return adapter.upsertMany(cards, state);
   }),
-  on(HandCardActions.updateCard, (state, { card}) => {
+  on(HandDeckCardActions.updateDeckCard, (state, { card}) => {
     return adapter.updateOne(card, state);
   }),
-  on(HandCardActions.updateCards, (state, { cards }) => {
+  on(HandDeckCardActions.updateDeckCards, (state, { cards }) => {
     return adapter.updateMany(cards, state);
   }),
-//  on(HandCardActions.mapCard, (state, { entityMap }) => {
+//  on(HandDeckCardActions.mapDeckCard, (state, { entityMap }) => {
 //    return adapter.mapOne(entityMap, state);
 //  }),
-  on(HandCardActions.mapCards, (state, { entityMap }) => {
+  on(HandDeckCardActions.mapDeckCards, (state, { entityMap }) => {
     return adapter.map(entityMap, state);
   }),
-  on(HandCardActions.deleteCard, (state, { id }) => {
+  on(HandDeckCardActions.deleteDeckCard, (state, { id }) => {
     return adapter.removeOne(id, state);
   }),
-  on(HandCardActions.deleteCards, (state, { ids }) => {
+  on(HandDeckCardActions.deleteDeckCards, (state, { ids }) => {
     return adapter.removeMany(ids, state);
   }),
-  on(HandCardActions.deleteCardsByPredicate, (state, { predicate }) => {
+  on(HandDeckCardActions.deleteDeckCardsByPredicate, (state, { predicate }) => {
     return adapter.removeMany(predicate, state);
   }),
 
-  on(HandCardActions.loadCards, (state, { cards }) => {
+  on(HandDeckCardActions.loadDeckCards, (state, { cards }) => {
     return adapter.setAll(cards, state);
   }),
 
-  on(HandCardActions.clearCards, state => {
-    return adapter.removeAll({ ...state, selectedCardId: 0 });
+  on(HandDeckCardActions.clearDeckCards, state => {
+    return adapter.removeAll({ ...state, selectedDeckCardId: 0 });
   })
 );
 
-export function reducer(state: PlayerHandCardsState | undefined, action: Action) {
+export function reducer(state: PlayerHandDeckCardsState | undefined, action: Action) {
   return cardReducer(state, action);
 }
 

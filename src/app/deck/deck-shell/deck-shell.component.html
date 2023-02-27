@@ -1,0 +1,22 @@
+<div class="deckshellcontainer">
+
+
+   <div class="deckcontainer">
+      <span style="color:red;">{{deckCount}}</span>
+      <app-card [aCard]="bkCard$|async" (click)="dealCards()"></app-card>
+
+   </div>
+
+<div class="deckslotscontainer" >
+  <div *ngFor="let displayCard of displayCards">
+         <app-card [aCard]="displayCard"></app-card>
+  </div>
+
+
+
+
+
+
+
+   </div>
+</div>

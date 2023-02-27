@@ -5,7 +5,8 @@ import { DeckCard } from '../models/deckcard';
 import { Observable, of } from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Deck } from '../models/deck';
-
+import * as fromShared from '../../shared/state';
+import { Store, select } from '@ngrx/store';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,14 +15,23 @@ export class DeckService {
   private apiRt;
   private apiAddress;
   private clientRt;
-  constructor(private http: HttpClient) {
+  gameID$: Observable<number>;
+  constructor(private http: HttpClient, private sharedStore: Store<fromShared.SharedModuleState>) {
     this.ctlrName = 'decks/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.clientRt = Constants.clientRoot;
+    this.gameID$ = this.sharedStore.pipe(select(fromShared.getGameId));
   }
 
   public createDeck(id: number): Observable<DeckCard[]> {
+
+
+    this.gameID$.subscribe((i: number) => {
+      id = i
+
+
+    });
 
     const address = 'create';
     const req_address = this.apiAddress + address;

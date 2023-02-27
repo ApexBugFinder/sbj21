@@ -1,23 +1,44 @@
 import { Action } from '@ngrx/store';
 import { Hand } from '../../../models/hand';
 export enum dealerhandActionTypes {
-  LOAD_HAND = '[Hand] Load Hand',
-  LOAD_HAND_SUCCESS = '[Hand] Load Hand Success',
-  LOAD_HAND_FAIL = '[Hand]Load Hand Fail',
-  CREATE_DEALER_HAND = '[Hand] Create Dealer Hand',
-  CREATE_DEALER_HAND_SUCCESS = '[Hand] Create Dealer Hand Success',
-  CREATE_DEALER_HAND_FAIL = '[Hand] Create Dealer Hand Fail',
+  LOAD_HAND = '[Dealer Hand] Load Dealer Hand',
+  LOAD_HAND_SUCCESS = '[Dealer Hand] Load Dealer Hand Success',
+  LOAD_HAND_FAIL = '[Dealer Hand]Load Dealer Hand Fail',
+  CREATE_DEALER_HAND = '[Dealer Hand] Create Dealer Hand',
+  CREATE_DEALER_HAND_SUCCESS = '[Dealer Hand] Create  Dealer Hand Success',
+  CREATE_DEALER_HAND_FAIL = '[Dealer Hand] Create Dealer Hand Fail',
+
+  SET_HAND_ID_FAIL = '[Dealer Hand] Set Dealer Hand ID Fail',
+  SET_GAME_ID = '[Dealer Hand] Set Game ID',
+  CLEAR_GAME_ID = '[Dealer Hand] Clear Game ID',
+  SET_GAME_ID_FAIL = '[Dealer Hand] Set Game ID Fail',
+  SET_USER_ID = '[Dealer Hand] Set User ID',
+  CLEAR_USER_ID = '[Dealer Hand] Clear User ID',
+  SET_USER_ID_FAIL = '[Dealer Hand] Set User ID Fail',
+  SET_HAND_ID = '[Dealer Hand] Set Dealer Hand ID',
+  CLEAR_HAND_ID = '[Dealer Hand] Clear Dealer Hand ID',
+
+  ADD_CARDS_TO_DEALER_HAND = '[Dealer Hand] Add Cards to Dealer Hand',
+  ADD_CARDS_TO_DEALER_HAND_SUCCESS = '[Dealer Hand] Add Cards to Dealer Hand --- SUCCESS',
+  ADD_CARDS_TO_DEALER_HAND_FAIL = '[Dealer Hand] Add Cards to Dealer Hand ---- FAIL',
+
+  UPDATE_DEALER_HAND_STATUS = '[Dealer Hand] Update Dealer Hand Status',
+  UPDATE_DEALER_HAND_STATUS_SUCCESS = '[Dealer Hand] Update Dealer Hand Status --- SUCCESS',
+  UPDATE_DEALER_HAND_STATUS_FAIL = '[Dealer Hand] Update Dealer Hand Status ---- FAIL',
+}
 
 
-  SET_HAND_ID_FAIL = '[Hand] Set Hand ID Fail',
-  SET_GAME_ID = '[Hand] Set Game ID',
-  CLEAR_GAME_ID = '[Hand] Clear Game ID',
-  SET_GAME_ID_FAIL = '[Hand] Set Game ID Fail',
-  SET_USER_ID = '[Hand] Set User ID',
-  CLEAR_USER_ID = '[Hand] Clear User ID',
-  SET_USER_ID_FAIL = '[Hand] Set User ID Fail',
-  SET_HAND_ID = '[Hand] Set Hand ID',
-  CLEAR_HAND_ID = '[Hand] Clear Hand ID',
+export class UpdateDealerHandStatus implements Action {
+  readonly type = dealerhandActionTypes.UPDATE_DEALER_HAND_STATUS;
+}
+
+export class UpdateDealerHandStatusSuccess implements Action {
+  readonly type = dealerhandActionTypes.UPDATE_DEALER_HAND_STATUS_SUCCESS;
+}
+
+export class UpdateDealerHandStatusFail implements Action {
+  readonly type = dealerhandActionTypes.UPDATE_DEALER_HAND_STATUS_FAIL;
+  constructor(public payload: string) {}
 }
 
 
@@ -88,6 +109,20 @@ export class SetUserIDFail implements Action {
   readonly type = dealerhandActionTypes.SET_USER_ID_FAIL;
   constructor(public payload: string){ }
 }
+
+
+export class AddCardsToDealerHand implements Action {
+  readonly type = dealerhandActionTypes.ADD_CARDS_TO_DEALER_HAND;
+
+}
+export class AddCardsToDealerHandSuccess implements Action {
+  readonly type = dealerhandActionTypes.ADD_CARDS_TO_DEALER_HAND_SUCCESS;
+  constructor(public payload: Hand) {}
+}
+export class AddCardsToDealerHandFail implements Action {
+  readonly type = dealerhandActionTypes.ADD_CARDS_TO_DEALER_HAND_FAIL;
+  constructor(public payload: string){ }
+}
 export type DealerHandActions =
   | LoadHand
   | LoadHandSuccess
@@ -103,4 +138,11 @@ export type DealerHandActions =
   | SetGameIdFail
   | SetUserId
   | ClearUserId
-  | SetUserIDFail;
+  | SetUserIDFail
+  | AddCardsToDealerHand
+  | AddCardsToDealerHandSuccess
+  | AddCardsToDealerHandFail
+  | UpdateDealerHandStatus
+  | UpdateDealerHandStatusSuccess
+  | UpdateDealerHandStatusFail
+  ;

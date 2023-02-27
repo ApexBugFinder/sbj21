@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HandbuttonsComponent } from './handbuttons/handbuttons.component';
+import { HandbuttonsComponent } from './player/handbuttons/handbuttons.component';
 import { DealerCardsComponent } from './dealer/cards/dealer-cards.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatDivider, MatDividerModule } from '@angular/material/divider';
@@ -25,7 +25,6 @@ import { PlayerResultsComponent } from './player/results/player-results.componen
 import { PlayerHandShellComponent } from './player/shell/player-handshell.component';
 import { PlayerHandEffects } from './player/shell/state/player-hand.effects';
 
-
 @NgModule({
   declarations: [
     DealerHandstatusComponent,
@@ -36,7 +35,7 @@ import { PlayerHandEffects } from './player/shell/state/player-hand.effects';
     PlayerHandCardsComponent,
     PlayerHandstatusComponent,
     PlayerResultsComponent,
-    PlayerHandShellComponent
+    PlayerHandShellComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +55,7 @@ import { PlayerHandEffects } from './player/shell/state/player-hand.effects';
     DealerHandShellComponent,
     PlayerHandCardsComponent,
     PlayerResultsComponent,
-    PlayerHandShellComponent
+    PlayerHandShellComponent,
   ],
   entryComponents: [DealerHandShellComponent, PlayerHandShellComponent],
   providers: [HandService, PlayerHandResolver, DealerHandResolver],

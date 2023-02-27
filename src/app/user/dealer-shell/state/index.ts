@@ -6,7 +6,7 @@ import {
 } from '@ngrx/store';
 import * as fromRoot from '../../../state/app.state';
 import * as fromUserRoot from '../../index';
-import { playerReducer, DealerState } from './dealer.reducer';
+import {  DealerState } from './dealer.reducer';
 export interface State extends fromUserRoot.UserModuleState {
   dealerState: DealerState;
 }

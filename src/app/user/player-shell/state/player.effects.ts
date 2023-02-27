@@ -6,7 +6,8 @@ import { PlayerService } from '../../services/player.service';
 import * as fromPlayer from '.';
 import { Store, select } from '@ngrx/store';
 import { Player } from '../../models/player';
-
+import * as fromPlayerHandStatus from '../../../hand/player/handstatus/state';
+import * as playerHandStatusActions from '../../../hand/player/handstatus/state/player-handstatus.actions';
 @Injectable()
 export class PlayerEffects {
   playerUsername$: Observable<string | undefined>;
@@ -14,7 +15,8 @@ export class PlayerEffects {
   constructor(
     private actions$: Actions,
     private playerService: PlayerService,
-    private playerStore: Store<fromPlayer.State>
+    private playerStore: Store<fromPlayer.State>,
+    private playerHandStatusStore: Store<fromPlayerHandStatus.State>,
   ) {
     this.playerUsername$ = this.playerStore.pipe(
       select(fromPlayer.getUsername)
@@ -36,6 +38,8 @@ export class PlayerEffects {
             console.log('NGRX EFFECT = LOAD PLAYER FROM DB', payload)
           ),
           map((player: Player) => {
+
+            this.playerHandStatusStore.dispatch(new playerHandStatusActions.SetHandStatusUsername(player.name))
             return new playerActions.LoadPlayerSuccess(player);
           }),
           catchError((err) => of(new playerActions.LoadPlayerFail(err)))

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'casino',
     component: TableShellComponent,
-    resolve: { playerHand: PlayerHandResolver, dealerHand: DealerHandResolver},
+    // resolve: { playerHand: PlayerHandResolver, dealerHand: DealerHandResolver},
   },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
 ];

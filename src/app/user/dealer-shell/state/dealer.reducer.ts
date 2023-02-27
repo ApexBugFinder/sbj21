@@ -13,7 +13,7 @@ const initialState: DealerState = {
   error: '',
 };
 
-export function playerReducer(
+export function dealerReducer(
   state = initialState,
   action: DealerShellActions
 ): DealerState {

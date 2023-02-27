@@ -20,6 +20,7 @@ export function handReducer(
   action: DealerHandActions
 ): DealerHandState {
   switch (action.type) {
+    case dealerhandActionTypes.ADD_CARDS_TO_DEALER_HAND_SUCCESS:
     case dealerhandActionTypes.CREATE_DEALER_HAND_SUCCESS:
     case dealerhandActionTypes.LOAD_HAND_SUCCESS:
       return {
@@ -60,6 +61,7 @@ export function handReducer(
         ...state,
         userId: initialState.userId,
       };
+    case dealerhandActionTypes.ADD_CARDS_TO_DEALER_HAND_FAIL:
     case dealerhandActionTypes.CREATE_DEALER_HAND_FAIL:
     case dealerhandActionTypes.LOAD_HAND_FAIL:
     case dealerhandActionTypes.SET_GAME_ID_FAIL:

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { TableShellComponent } from './table-shell/table-shell.component';
-import { DeckShellComponent } from './table-shell/deck-shell/deck-shell.component';
+import { DeckShellComponent } from './deck/deck-shell/deck-shell.component';
 import { DealerShellComponent } from './user/dealer-shell/dealer-shell.component';
 import { PlayerShellComponent } from './user/player-shell/player-shell.component';
 import { HandModule } from './hand/hand.module';
@@ -24,12 +24,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducers } from './user';
+import { DeckModule } from './deck/deck.module';
+import { sharedReducers } from './shared/state';
+import { appReducers } from './state/app.state';
+import { DeckService } from './deck/services/deck.service';
+import { DeckCardService } from './deck/services/deckcard.service';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TableShellComponent,
-    DeckShellComponent,
     DealerShellComponent,
     PlayerShellComponent,
   ],
@@ -37,7 +41,7 @@ import { userReducers } from './user';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(userReducers),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       name: 'SBJ Devtools',
       maxAge: 25,
@@ -46,13 +50,19 @@ import { userReducers } from './user';
     EffectsModule.forRoot([]),
     SharedModule,
     CardsModule,
+    DeckModule,
     HandModule,
     FontAwesomeModule,
     UserModule,
   ],
   exports: [PlayerShellComponent, TableShellComponent],
 
-  providers: [HandService, PlayerHandResolver, DealerHandResolver],
+  providers: [HandService,
+    PlayerHandResolver,
+    DealerHandResolver,
+    DeckService,
+    DeckCardService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

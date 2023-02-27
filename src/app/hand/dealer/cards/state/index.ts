@@ -1,14 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromHandRoot from '../../../index';
-import * as fromHand from '../../../index'
-import { DealerHandCardsState } from './dealer_handcards.reducer';
+import * as fromHand from '../../../index';
+import { DealerHandCardsState } from './dealer-handcards.reducer';
 
-
-export interface State extends fromHandRoot.HandModuleState{
-  handcardsState: DealerHandCardsState
+export interface State extends fromHandRoot.HandModuleState {
+  handcardsState: DealerHandCardsState;
 }
 
-const getHandCardsFeatureState = createFeatureSelector<DealerHandCardsState>('handcards');
+const getHandCardsFeatureState =
+  createFeatureSelector<DealerHandCardsState>('handcards');
 
 export const selectAllCardEntites = createSelector(
   getHandCardsFeatureState,
@@ -31,17 +31,18 @@ export const selectHighValue = createSelector(
   (state) => {
     let count = 0;
 
-    Object.values(state.entities).forEach(i => {
+    Object.values(state.entities).forEach((i) => {
       count = count + i.h_value;
-    })
+    });
     return count;
-  });
+  }
+);
 
 export const selectLowValue = createSelector(
   getHandCardsFeatureState,
   (state) => {
     let count = 0;
-    Object.values(state.entities).forEach(i => {
+    Object.values(state.entities).forEach((i) => {
       count = count + i.l_value;
     });
     return count;
@@ -58,5 +59,3 @@ export const selectCardId = createSelector(
   getHandCardsFeatureState,
   (state) => state.selectedCardId
 );
-
-

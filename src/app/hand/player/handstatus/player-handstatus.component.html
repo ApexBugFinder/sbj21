@@ -1,5 +1,5 @@
 <div class="statusContainer">
-<p *ngIf="player">Name: {{ capitalizeFirst(player?.name)}} </p>
-<span *ngIf="hand">Status: {{hand.status}}</span>
+<p *ngIf="username">Name: {{ capitalizeFirst(username)}} </p>
+<span *ngIf="playerhandstatus">Status: {{capitalizeFirst(playerhandstatus)}}</span>
 </div>
-<hr>
+<hr [ngClass]="{'dividerStatusActive':(turn$|async).name==username }">

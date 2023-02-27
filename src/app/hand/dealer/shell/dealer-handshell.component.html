@@ -1,17 +1,13 @@
 <div class="handContainer">
-   <app-dealer-handstatus
-    [username]="player.name"
-    [hand]="hand"
-   [gameId]="gameId"
-   [hand_id]="hand_id" >
+  <app-dealer-handstatus>
   </app-dealer-handstatus>
 
   <div class="content">
-        <app-dealer-cards [hand_id]="hand_id" [cards]="cards" class="cardsCont"></app-dealer-cards>
+        <app-dealer-cards class="cardsCont"></app-dealer-cards>
 
-        <app-dealer-results [hand_id]="hand_id" [hand]="hand"  class="resultsCont"></app-dealer-results>
+        <app-dealer-results class="resultsCont"></app-dealer-results>
         <div class="buttonContainer">
-     <app-handbuttons [handId]="hand_id"></app-handbuttons>
+     
 
 </div>
    </div>

@@ -1,11 +1,12 @@
-<div *ngIf="cards" class="cardsContainer" >
-  <div  *ngFor="let handcard of cards">
-    <!-- <app-card [id]="handcard.id" [aCard]="handcard"></app-card> -->
+<div *ngIf="(handcards$|async).length >0" class="cardsContainer" >
+  <div  *ngFor="let handcard of (handcards$|async)">
+    <app-card [aCard]="handcard"></app-card>
   </div>
 
+ <mat-divider class="divy"[vertical]="true"></mat-divider>
 
 
 
-  <mat-divider class="divy"[vertical]="true"></mat-divider>
 
 </div>
+

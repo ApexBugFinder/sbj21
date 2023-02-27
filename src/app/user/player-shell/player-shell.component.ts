@@ -12,10 +12,8 @@ import * as fromPlayerShell from './state';
   styleUrls: ['./player-shell.component.scss'],
 })
 export class PlayerShellComponent implements OnInit {
-  @Input() username: string;
-  @Input() gameId;
-  @Input() hand_id: number;
-  @Input() playerHand: Hand;
+
+
   player: Player = defaultPlayer;
   player$: Observable<Player>;
   constructor(private playerService: PlayerService,
@@ -24,12 +22,10 @@ export class PlayerShellComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log('HAND ID PASSED IN: ', this.hand_id);
-    console.log('username: ', this.username);
-    console.log('HAND PASSED IN: ', this.playerHand);
     this.player$.subscribe((value: Player) => {
       this.player = value;
-      console.log('PLayerShelll Player: ', this.player);
+      if(this.player != defaultPlayer)
+      console.log('PLayerShell Player: ', this.player);
   });
   }
 

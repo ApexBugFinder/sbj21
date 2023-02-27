@@ -17,6 +17,8 @@ import * as fromDealerHand from '../../hand/dealer/shell/state';
 import * as dealerHandActions from '../../hand/dealer/shell/state/dealer-hand.actions';
 import * as fromPlayerHand from '../../hand/player/shell/state';
 import * as playerHandActions from '../../hand/player/shell/state/player-hand.actions';
+import * as fromDeckShell from '../../deck/deck-shell/state';
+import * as deckShellActions from '../../deck/deck-shell/state/deckshell-actions';
 @Injectable()
 export class SharedEffects {
   aGame: Game;
@@ -30,12 +32,13 @@ export class SharedEffects {
     private playerShellStore: Store<fromUserPlayer.State>,
     private dealerShellStore: Store<fromDealerPlayer.State>,
     private dealerHandStore: Store<fromDealerHand.State>,
+    private deckShellStore: Store<fromDeckShell.State>,
     private playerHandStore: Store<fromPlayerHand.State>,
     private sharedStore: Store<fromShared.SharedModuleState>,
 
     private playerService: PlayerService
   ) {
-    this.player$ = this.sharedStore.pipe(select(fromShared.getGuestPlayer));
+    this.player$ = this.sharedStore.pipe(select(fromShared.getPlayer));
     this.dealer$ = this.sharedStore.pipe(select(fromShared.getDealer));
 
     this.player$.subscribe((value: Player) => (this.player = value));
@@ -70,6 +73,10 @@ export class SharedEffects {
             this.dealerShellStore.dispatch(
               new DealerShellActions.SetDealerShellPlayer(this.dealer)
             );
+            // CREATE DECK
+            this.sharedStore.dispatch(new sharedActions.SetGameID(newGame.id));
+
+            this.deckShellStore.dispatch(new deckShellActions.LoadDeck(newGame.id));
             // CREATE HANDs
             this.dealerHandStore.dispatch(new dealerHandActions.CreateDealerHand());
             this.playerHandStore.dispatch(new playerHandActions.CreatePlayerHand());

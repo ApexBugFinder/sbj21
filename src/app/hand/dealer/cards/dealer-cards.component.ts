@@ -4,6 +4,8 @@ import { HandService } from '../../services/hand.service';
 import { DeckCard } from 'src/app/deck/models/deckcard';
 import { Card } from 'src/app/cards/models/card';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as fromHand from '../../index';
 
 @Component({
   selector: 'app-dealer-cards',
@@ -14,11 +16,11 @@ export class DealerCardsComponent implements OnInit, DoCheck {
   @Input() hand_id: number;
 
   handcards: HandCards;
-  handcards$: Observable<HandCards>;
+  handcards$: Observable<DeckCard[]>;
   @Input() cards: DeckCard[] = [];
-  constructor(private handService: HandService) {
+  constructor(private handStore: Store<fromHand.HandModuleState>) {
 
-    this.handcards$ = this.handService.getHandCards(this.hand_id);
+    this.handcards$ = this.handStore.pipe(select(fromHand.getDealerHandCards))
   }
 
 

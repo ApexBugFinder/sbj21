@@ -26,7 +26,7 @@ export const getGameId = createSelector(
   state => state.shared.gameId
 );
 
-export const getGuestPlayer = createSelector(
+export const getPlayer = createSelector(
   selectSharedState,
   state => state.guest_player
 );
@@ -35,3 +35,15 @@ export const getDealer = createSelector(
   selectSharedState,
   state => state.dealer
 );
+
+export const
+  getGameStatus  = createSelector(
+      selectSharedState,
+      state => state.game_status
+    );
+export const getWhoseTurn = createSelector(
+  selectSharedState,
+  (state: fromShared.SharedState) => state.user_turn
+);
+
+
